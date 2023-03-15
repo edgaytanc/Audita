@@ -18,7 +18,7 @@
                             role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Acceso Usuarios</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/pages/user/enrollment.html">Registro</a></li>
+                            <li><a class="dropdown-item" href="{% url 'register' %}">Registro</a></li>
                             <li><a class="dropdown-item" href="#">Usuarios
                                     y perfiles</a></li>
                             <li><a class="dropdown-item" href="#">Autorización
@@ -117,10 +117,17 @@
                             <li><a class="dropdown-item" href="#">Calidad</a></li>
                         </ul>
                     </li>
-                    <li class ="nav-item">
-                        <a class ="nav-link " href="{% url 'logout' %}"
-                        >Salir</a>
+                    
+                    <li class ="nav-item dropdown">
+                        <a class ="nav-link dropdown-toggle" href="#"
+                            role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"><b>{{user.username|upper}}</b></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'change_password' %}">Cambiar Contraseña</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                            </ul>
                     </li>
+
 
 
 

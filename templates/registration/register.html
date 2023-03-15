@@ -1,0 +1,41 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block 'content' %}
+<div class="row h-100 align-items-center">
+    <div class="col-6">
+        <img
+            src="{% static 'img/registration.png' %}"
+            alt="Placeholder Image"
+            class="img-fluid"
+            />
+    </div>
+    <div class="col-4">
+        <div class="">
+            
+            <img src="{% static 'img/logo-vertical.png' %}" class="mx-auto d-block" width="175" alt="">
+            <br>
+        </div>
+        <div>
+            <h1>Registro de Usuarios</h1>
+            <p class="fst-italic">Complete los detalles para la nueva cuenta.</p>
+            <br>
+        </div>
+
+        <form method ="POST">
+
+            {% csrf_token %}
+            {{ form|crispy }}
+            
+            <br>
+            <div class="row">
+                <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+  
+{% endblock 'content' %}
