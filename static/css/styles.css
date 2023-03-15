@@ -1,0 +1,16 @@
+
+#fondo {
+    background: rgba(125, 100, 0, 0.3);
+    background-image: url("/img/audita-backgroud.jpg");
+    height: 90vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(2px) contrast(50%);
+
+}
+
+.btn-principal{
+    padding-left: 2px;
+    padding-right: 2px;
+}

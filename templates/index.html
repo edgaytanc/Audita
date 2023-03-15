@@ -1,29 +1,21 @@
 {% extends 'layout/base.html' %}
-
+{% load static %}
 {% block 'title' %} Inicio {% endblock 'title' %}
 
 {% block 'content' %}
-    <div class = "container h-100">
-        <div class="row h-100 align-items-center">
-            <div class="col-6">
-                <img
-                    src="static/img/audita-login.png"
-                    alt="Placeholder Image"
-                    class="img-fluid"
-                    />
-            </div>
-            <div class="col-4">
-                <div class="">
-                    <img src="static/img/logo-vertical.png" class="mx-auto d-block" width="175" alt="">
-                    <br>
-                </div>
-                <div>
-                    <h1>Bienvenido</h1>
-                    <p class="fw-semibold">Inicie sesión para continuar.</p>
-                    <br>
-                </div>
-            </div>
+
+    <div class="row p-5 m-5">
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+            <img src="{% static 'img/logo-vertical.png' %}" class="mx-auto d-block" width="300" alt="">
+            <h4 class="text-center">BIENVENIDO {{user.username|upper}}</h4>
+        </div>
+        <div class="col-4">
         </div>
     </div>
+    
+
+
 
 {% endblock 'content' %}
