@@ -24,5 +24,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', auth_views.LoginView.as_view(), name='login'),
     path('index/', views.index,name='index'),
+    path('cambiar-contrasena/', views.change_password, name='change_password'),
     
 ]
