@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #'widget_tweaks',
     'crispy_forms',
     'crispy_bootstrap5',
+    'proyecto',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
