@@ -7,6 +7,7 @@ class Contacto(models.Model):
     telefono = models.CharField(max_length=15, null=True, blank=True, verbose_name='Teléfono Contacto')
     email = models.EmailField(null=False, blank=False, verbose_name='Email Contacto')
     cargo = models.CharField(max_length=100, null=True, blank=True, verbose_name='Cargo Contacto')
+    empresa = models.CharField(max_length=100,null=True,blank=True, verbose_name='Empresa en que labora')
 
     def __str__(self):
         return self.nombre

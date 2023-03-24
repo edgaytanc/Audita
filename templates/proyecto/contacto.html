@@ -1,0 +1,53 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block 'content' %}
+<div class="row h-100 align-items-center">
+    <div class="col-6">
+        <img
+            src="{% static 'img/registration.png' %}"
+            alt="Placeholder Image"
+            class="img-fluid"
+            />
+    </div>
+    <div class="col-4">
+        <div class="">
+            
+            <img src="{% static 'img/logo-vertical.png' %}" class="mx-auto d-block" width="175" alt="">
+            <br>
+        </div>
+        <div>
+            <h1>Contacto</h1>
+            <p class="fst-italic">Complete los detalles del contacto.</p>
+            <br>
+        </div>
+
+        <form method ="POST">
+
+            {% csrf_token %}
+            {{ form|crispy }}
+            
+            <br>
+            <div class="row">
+                <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+            </div>
+        </form>
+
+        {% if 'ok' in request.GET %}
+            <div class="alert alert-success mt-5" role="alert">
+                <strong>El contacto se creo correctamente</strong>
+            </div>
+        {% endif %}
+
+        {% if 'error' in request.GET %}
+            <div class="alert alert-danger mt-5" role="alert">
+                <strong>El contacto no pudo crearse. Por favor, intente más tarde</strong>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+
+  
+{% endblock 'content' %}

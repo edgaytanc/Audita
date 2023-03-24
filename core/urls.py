@@ -26,6 +26,7 @@ urlpatterns = [
     path('index/', views.index,name='index'),
     path('cambiar-contrasena/', views.change_password, name='change_password'),
     path('restablecer-contrasena/', views.reset_password, name='reset_password'),
-    path('register/', views.register, name='register')
+    path('register/', views.register, name='register'),
+    path('proyecto/', include('proyecto.urls')),
     
 ]

@@ -1,0 +1,40 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block 'content' %}
+
+<div class="row text-center h-100">
+    <div class="col">
+        <br>
+        <h1>Datos de Entidad</h1>
+        <p class="fst-italic">Complete todos los detalles, algunos
+            son obligatorios
+        </p>
+        <br>
+    </div>
+</div>
+
+    <form method ="POST">
+        {% csrf_token %}
+        <div class="row g-5 p-5">
+            <div class="col-md">
+
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="fw-semibold" for="nombre">Nombre de la Entidad</label>
+                    {{form.nombre|crispy}}
+                </div>
+            </div>
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <br>
+            <div class="row">
+                <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+            </div>
+    </div>
+    </form>
+
+
+{% endblock 'content' %}
