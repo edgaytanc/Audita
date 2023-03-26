@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Contacto(models.Model):
-    nombre = models.CharField(max_length=100, null=False, blank=False, verbose_name='Nombre Contacto')
-    movil = models.CharField(max_length=15, null=False, blank=False, verbose_name='Movil Contacto')
+    nombre = models.CharField(max_length=100, verbose_name='Nombre Contacto')
+    movil = models.CharField(max_length=15, verbose_name='Movil Contacto')
     telefono = models.CharField(max_length=15, null=True, blank=True, verbose_name='Teléfono Contacto')
-    email = models.EmailField(null=False, blank=False, verbose_name='Email Contacto')
+    email = models.EmailField(verbose_name='Email Contacto')
     cargo = models.CharField(max_length=100, null=True, blank=True, verbose_name='Cargo Contacto')
-    empresa = models.CharField(max_length=100,null=True,blank=True, verbose_name='Empresa en que labora')
+    empresa = models.CharField(max_length=100, null=True, blank=True, verbose_name='Empresa en que labora')
 
     def __str__(self):
         return self.nombre
@@ -17,6 +17,7 @@ class Contacto(models.Model):
         verbose_name = 'Contacto'
         verbose_name_plural = 'Contactos'
         ordering = ['id']
+        
 
 
 class Entidad(models.Model):
