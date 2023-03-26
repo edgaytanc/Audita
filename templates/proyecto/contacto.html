@@ -3,10 +3,10 @@
 {% load static %}
 
 {% block 'content' %}
-<div class="row h-100 align-items-center">
+<div class="row h-100 align-items-center p-5">
     <div class="col-6">
         <img
-            src="{% static 'img/registration.png' %}"
+            src="{% static 'img/audita-contact.png' %}"
             alt="Placeholder Image"
             class="img-fluid"
             />
@@ -33,11 +33,7 @@
                 <button type="submit" class="btn btn-primary btn-block">Guardar</button>
             </div>
         </form>
-        <form id="formulario-contacto" method="POST" action="{% url 'imprimir_contactos' %}">
-            {% csrf_token %}
-            <!-- tus campos de formulario aquí -->
-            <button type="submit">Generar Reporte</button>
-          </form>
+        
           
 
         {% if 'ok' in request.GET %}

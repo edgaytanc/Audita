@@ -14,7 +14,7 @@ from .forms import ContactoForm, EntidadFrom
 from proyecto.models import Contacto
 from datetime import datetime
 
-
+#Ingresa nuevos contactos
 def ContactoPro(request):
     contacto_form = ContactoForm()
 
@@ -30,6 +30,24 @@ def ContactoPro(request):
              return redirect(reverse('contacto')+'?error')
 
     return render(request, 'proyecto/contacto.html',{'form':contacto_form})
+
+# Despliega el listado de los contactos
+def lista_Contacto(request):
+    contactos = Contacto.objects.all()
+    context = {
+        'contactos':contactos
+    }
+    return render(request, 'proyecto/lista_contactos.html', context)
+
+#busca un contacto y lo despliega
+def detalle_contacto(request):
+    contacto_id = request.GET.get('id')
+    contacto = Contacto.objects.get(id=contacto_id)
+    context = {
+        'contacto': contacto
+    }
+    return render(request, 'proyecto/detalle_contacto.html', context)
+
 
 def Entidad(request):
     entidad_form = EntidadFrom()

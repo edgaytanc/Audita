@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Contacto, Entidad
 
-# Register your models here.
+admin.site.register(Contacto)
+admin.site.register(Entidad)
