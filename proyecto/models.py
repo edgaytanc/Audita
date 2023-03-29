@@ -21,7 +21,7 @@ class Contacto(models.Model):
 
 
 class Entidad(models.Model):
-    nombre = models.CharField(max_length=100, null=False, blank=False, verbose_name='Nombre')
+    nombre = models.CharField(max_length=100, null=False, blank=False, verbose_name='Nombre de Entidad')
     direccion = models.CharField(max_length=150, null=False, blank=False, verbose_name='Direccion')
     ciudad = models.CharField(max_length=100, null=False, blank=False, verbose_name='Ciudad')
     pais = models.CharField(max_length=100, null=False, blank=False, verbose_name='Pais')
@@ -48,8 +48,17 @@ class Entidad(models.Model):
         ordering = ['id']
 
 
+
 class AuditorSupervisor(models.Model):
-    entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE,null=False, blank=False)
+
+    TIPO_OPCIONES = (
+    ('Auditor', 'Auditor'),
+    ('Supervisor', 'Supervisor'),
+    ('Otros', 'Otros'),
+)
+
+
+    entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE,null=False, blank=False, verbose_name='Asociar Entidad')
     nombre = models.CharField(max_length=100, null=False, blank=False, verbose_name='Nombre')
     cargo = models.CharField(max_length=50,null=False, blank=False, verbose_name='Cargo')
     colegiado = models.CharField(max_length=50, null=True, blank=True, verbose_name='Colegiado')
@@ -58,7 +67,7 @@ class AuditorSupervisor(models.Model):
     nombramiento = models.CharField(max_length=30, null=False, blank=False, verbose_name='Nombramiento')
     fecha_nombramiento = models.DateField(null=False, blank=False, verbose_name='Fecha de Nombramiento')
     tareas = models.TextField(null=True, blank=True, verbose_name='Asignacion de tareas')
-    tipo = models.CharField(max_length=20, null=False, blank=False, verbose_name='Tipo Colaborador')
+    tipo = models.CharField(max_length=20, null=False, blank=False, choices=TIPO_OPCIONES, verbose_name='Tipo Colaborador')
 
     def __str__(self):
         return self.nombre

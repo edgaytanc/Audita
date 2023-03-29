@@ -1,0 +1,60 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block 'content' %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2 class="text-center">Edición de colaborador</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/proyecto/editaColaborador/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="entidad" class=" form-label"><strong>Entidad</strong> </label>
+                        <input type="text" id="entidad" name="entidad" value="{{colaborador.entidad}}" class="form-control" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre" class=" form-label"><strong>Nombre</strong></label>
+                        <input type="text" id="nombre" name="nombre" value="{{colaborador.nombre}}" class="form-control" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cargo" class=" form-label"><strong>Cargo</strong></label>
+                        <input type="text" id="cargo" name="cargo" value="{{colaborador.cargo}}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="colegiado" class=" form-label"><strong>Colegiado</strong></label>
+                        <input type="text" id="colegiado" name="colegiado" value="{{colaborador.colegiado}}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo_auditoria" class=" form-label"><strong>Tipo de Auditoría</strong></label>
+                        <input type="text" id="tipo_auditoria" name="tipo_auditoria" value="{{colaborador.tipo_auditoria}}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="periodo" class=" form-label"><strong>Periodo</strong></label>
+                        <input type="text" id="periodo" name="periodo" value="{{colaborador.periodo}}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombramiento" class=" form-label"><strong>Nombraminto</strong></label>
+                        <input type="text" id="nombramiento" name="nombramiento" value="{{colaborador.nombramiento}}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_nombramiento" class=" form-label"><strong>Fecha de Nombramiento</strong></label>
+                        <input type="date" id="fecha_nombramiento" name="fecha_nombramiento" value="{{colaborador.fecha_nombramiento|date:'Y-m-d'}}" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tareas" class=" form-label"><strong>Tareas</strong></label>
+                        <textarea id="tareas" name="tareas" class="form-control" required>{{colaborador.tareas}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo" class=" form-label"><strong>Tipo</strong></label>
+                        <input type="text" id="tipo" name="tipo" value="{{colaborador.tipo}}" class="form-control" required>
+                    </div>
+                    <div class=" row form-group py-2">
+                        <button type="submit" class="btn btn-primary btn-block text-white">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock 'content' %}

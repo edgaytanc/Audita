@@ -6,7 +6,7 @@
 <div class="row text-center ">
     <div class="col">
         <br>
-        <h1>Datos de Entidad</h1>
+        <h1>Datos de Colaborador</h1>
         <p class="fst-italic">Complete todos los detalles, algunos
             son obligatorios
         </p>
@@ -14,7 +14,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6 p-5">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 p-5">
         <div class="card">
             <form method ="POST" class="form-control">
                 {% csrf_token %}
@@ -31,15 +31,13 @@
         </div>
 
     </div>
-    <div class="col-md-6 p-5">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 p-5">
         <img
-            src="{% static 'img/audita-entidad.png' %}"
+            src="{% static 'img/audita-colaborador.png' %}"
             alt="Placeholder Image"
             class="img-fluid"
             />
     </div>
 </div>
-    
-
 
 {% endblock 'content' %}

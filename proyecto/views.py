@@ -10,8 +10,8 @@ from reportlab.lib import colors
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.http import HttpResponse
-from .forms import ContactoForm, EntidadFrom
-from proyecto.models import Contacto
+from .forms import ContactoForm, EntidadFrom, AuditorSupervisorForm, NotificacionForm
+from proyecto.models import Contacto, AuditorSupervisor
 from datetime import datetime
 
 #Ingresa nuevos contactos
@@ -48,23 +48,7 @@ def detalle_contacto(request):
     }
     return render(request, 'proyecto/detalle_contacto.html', context)
 
-
-def Entidad(request):
-    entidad_form = EntidadFrom()
-
-    if request.method == 'POST':
-        entidad_form = EntidadFrom(data=request.POST)
-        if entidad_form.is_valid():
-            entidad_form.save()
-            #Tengo que avisar que todo salio bien
-            return redirect(reverse('entidad')+'?ok')
-        else:
-            #se genera un error
-            return redirect(reverse('entidad')+'?error')
-    return render(request, 'proyecto/entidad.html',{'form':entidad_form})
-
-
-
+#Imprime en pdf la lista de contactos
 def imprimir_contactos(request):
     contactos = Contacto.objects.all()
     
@@ -137,3 +121,84 @@ def imprimir_contactos(request):
     response.write(pdfs)
 
     return response
+
+#ingresa datos de la entidad a Auditar
+def Entidad(request):
+    entidad_form = EntidadFrom()
+
+    if request.method == 'POST':
+        entidad_form = EntidadFrom(data=request.POST)
+        if entidad_form.is_valid():
+            entidad_form.save()
+            #Tengo que avisar que todo salio bien
+            return redirect(reverse('entidad')+'?ok')
+        else:
+            #se genera un error
+            return redirect(reverse('entidad')+'?error')
+    return render(request, 'proyecto/entidad.html',{'form':entidad_form})
+
+def AuditorSupervisorPro(request):
+    cargaColaborador(request)
+    auditorSupervisor_form = AuditorSupervisorForm()
+
+    if request.method == 'POST':
+        auditorSupervisor_form = AuditorSupervisorForm(data=request.POST)
+        if auditorSupervisor_form.is_valid():
+            auditorSupervisor_form.save()
+            return redirect(reverse('auditorSupervisor')+'?ok')
+        else:
+            return redirect(reverse('auditorSupervisor')+'?error')
+    return render(request, 'proyecto/auditorSupervisor.html',{'form':auditorSupervisor_form})
+
+def cargaColaborador(request):
+    colaboradores = AuditorSupervisor.objects.all()
+    return render(request,'proyecto/colaborador.html',{'colaboradores':colaboradores})
+
+def editarColaborador(request,nombre):
+    colaborador = AuditorSupervisor.objects.get(nombre=nombre)
+    return render(request, 'proyecto/editarColaborador.html',{'colaborador':colaborador})
+
+def editaColaborador(request):
+    entidad = request.POST['entidad']
+    nombre = request.POST['nombre']
+    cargo = request.POST['cargo']
+    colegiado = request.POST['colegiado']
+    tipo_auditoria = request.POST['tipo_auditoria']
+    periodo = request.POST['periodo']
+    nombramiento = request.POST['nombramiento']
+    fecha_nombramiento = request.POST['fecha_nombramiento']
+    tareas = request.POST['tareas']
+    tipo = request.POST['tipo']
+
+    colaborador = AuditorSupervisor.objects.get(nombre=nombre)
+    # colaborador.entidad = entidad
+    # colaborador.nombre = nombre
+    colaborador.cargo = cargo
+    colaborador.colegiado = colegiado
+    colaborador.tipo_auditoria = tipo_auditoria
+    colaborador.periodo = periodo
+    colaborador.nombramiento = nombramiento
+    colaborador.fecha_nombramiento = fecha_nombramiento
+    colaborador.tareas = tareas
+    colaborador.tipo = tipo
+
+    colaborador.save()
+    return redirect(reverse('cargaColaborador'))
+
+def eliminarColaborador(request,nombre):
+    colaborador = AuditorSupervisor.objects.get(nombre=nombre)
+    colaborador.delete()
+    return redirect(reverse('cargaColaborador'))
+
+
+def Notificacion(request):
+    notificacion_form = NotificacionForm()
+
+    if request.method == 'POST':
+        notificacion_form = NotificacionForm(data=request.POST)
+        if notificacion_form.is_valid():
+            notificacion_form.save()
+            return redirect(reverse('notificacion')+'?ok')
+        else:
+            return redirect(reverse('notificacion')+'?error')
+    return render(request, 'proyecto/notificacion.html',{'form':notificacion_form})

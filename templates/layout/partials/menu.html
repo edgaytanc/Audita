@@ -19,10 +19,10 @@
                             aria-expanded="false">Acceso Usuarios</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'register' %}">Registro</a></li>
-                            <li><a class="dropdown-item" href="#">Usuarios
-                                    y perfiles</a></li>
-                            <li><a class="dropdown-item" href="#">Autorización
-                                    de Acceso</a></li>
+                            {% comment %} <li><a class="dropdown-item" href="#">Usuarios {% endcomment %}
+                                    {% comment %} y perfiles</a></li> {% endcomment %}
+                            {% comment %} <li><a class="dropdown-item" href="#">Autorización
+                                    de Acceso</a></li> {% endcomment %}
                         </ul>
                     </li>
 
@@ -33,13 +33,12 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'entidad' %}">Datos
                                     entidad auditada</a></li>
-                            <li><a class="dropdown-item" href="/pages/project/auditor.html">Datos
-                                    auditor Asignado</a></li>
-                            <li><a class="dropdown-item" href="/pages/project/supervisor.html">Datos
-                                    Supervisor</a></li>
-                            <li><a class="dropdown-item" href="/pages/project/notifica.html">Notificaciones</a></li>
+                            <li><a class="dropdown-item" href="{% url 'auditorSupervisor' %}">Datos
+                                    Colaborador Asignado</a></li>
+                            <li><a class="dropdown-item" href="{% url 'notificacion'%}">Notificaciones</a></li>
                             <li><a class="dropdown-item" href="{% url 'contacto' %}">Contactos</a></li>
                             <li><a class="dropdown-item" href="{% url 'lista_contactos' %}">Listado de Contactos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cargaColaborador' %}">Listado de Colaboradores</a></li>
                         </ul>
                     </li>
 
@@ -129,10 +128,6 @@
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
                             </ul>
                     </li>
-
-
-
-
                 </ul>
             </div>
         </div>

@@ -1,0 +1,61 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block 'content' %}
+
+<div class="row text-center ">
+    <div class="col">
+        <br>
+        <h1>Datos de Colaborador</h1>
+        <p class="fst-italic">Complete todos los detalles, algunos
+            son obligatorios
+        </p>
+        <br>
+    </div>
+</div>
+<div class="row">
+    
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 p-5">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Entidad</th>
+                        <th>Nombre</th>
+                        <th>Cargo</th>
+                        <th>Colegiado</th>
+                        <th>Tipo Auditoría</th>
+                        <th>Periódo</th>
+                        <th>Nombramiento</th>
+                        <th>Fecha Nombramiento</th>
+                        <th>Tareas</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for co in colaboradores%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{co.entidad}}</td>
+                        <td>{{co.nombre}}</td>
+                        <td>{{co.cargo}}</td>
+                        <td>{{co.colegiado}}</td>
+                        <td>{{co.tipo_auditoria}}</td>
+                        <td>{{co.periodo}}</td>
+                        <td>{{co.nombramiento}}</td>
+                        <td>{{co.fecha_nombramiento}}</td>
+                        <td>{{co.tareas}}</td>
+                        <td>{{co.tipo}}</td>
+                        <td><a href="/proyecto/editarColaborador/{{co.nombre}}" class="btn btn-info">editar</a></td>
+                        <td><a href="/proyecto/eliminarColaborador/{{co.nombre}}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock 'content' %}
