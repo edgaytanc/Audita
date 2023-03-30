@@ -53,6 +53,11 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <form id="formulario-contacto" method="POST" action="{% url 'imprimeColaborador' %}">
+                {% csrf_token %}
+                <!-- Tus campos de formulario aquí -->
+                <button type="submit" class="btn btn-primary">Generar Reporte</button>
+            </form>
         </div>
     </div>
 </div>

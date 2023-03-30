@@ -14,5 +14,6 @@ urlpatterns = [
     path('eliminarColaborador/<nombre>',views.eliminarColaborador,name='eliminarColaborador'),
     path('editarColaborador/<nombre>',views.editarColaborador,name='editarColaborador'),
     path('editaColaborador/',views.editaColaborador, name='editaColaborador'),
+    path('auditorSupervisor/imprimir/',views.imprimirColaborador,name='imprimeColaborador'),
     path('notificacion/',views.Notificacion, name='notificacion')
 ]

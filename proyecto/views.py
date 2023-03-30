@@ -2,7 +2,7 @@ import reportlab
 from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Paragraph
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A4,landscape
 from reportlab.lib.units import cm
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import *
@@ -189,6 +189,93 @@ def eliminarColaborador(request,nombre):
     colaborador = AuditorSupervisor.objects.get(nombre=nombre)
     colaborador.delete()
     return redirect(reverse('cargaColaborador'))
+
+
+
+#imprime en pdf el listado de colaboradores de todas las entidades
+def imprimirColaborador(request):
+    colaboradores = AuditorSupervisor.objects.all()
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="colaboradores.pdf"'
+
+    buffer = BytesIO()
+
+    # Crea el objeto PDF y se establece el tamano de la pagina
+    A4_horizontal = landscape(A4)
+    pdf = canvas.Canvas(response, pagesize=A4_horizontal)
+
+    fecha = datetime.now()
+    hoy = fecha.strftime('%d/%m/%y')
+
+    #Header
+    pdf.setLineWidth(.3)
+    pdf.setFont('Helvetica',22)
+    pdf.drawString(30,500,'Audita')
+
+    pdf.setFont('Helvetica',12)
+    pdf.drawString(30,485,'Reporte')
+
+    pdf.setFont('Helvetica-Bold',12)
+    pdf.drawString(750,500, hoy)
+    pdf.line(740,497,810,497)
+
+    #Table header
+    styles = getSampleStyleSheet()
+    styleBH = styles["Normal"]
+    styleBH.fontName = 'Helvetica-Bold'
+    styleBH.alignment = reportlab.lib.enums.TA_CENTER
+    styleBH.fontSize = 8
+
+    entidad = Paragraph('''Entidad''',styleBH)
+    nombre = Paragraph('''Nombre''',styleBH)
+    cargo = Paragraph('''Cargo''',styleBH)
+    colegiado = Paragraph('''Colegiado''',styleBH)
+    tipo_auditoria = Paragraph('''Tipo de Auditoria''',styleBH)
+    periodo = Paragraph('''Periodo''',styleBH)
+    nombramiento = Paragraph('''Nombramiento''',styleBH)
+    fecha_nombramiento = Paragraph('''Fecha de Nombramiento''',styleBH)
+    tareas = Paragraph('''Tareas''',styleBH)
+    tipo = Paragraph('''Tipo''',styleBH)
+
+    data = []
+    data.append([entidad,nombre,cargo,colegiado,tipo_auditoria,periodo,nombramiento,fecha_nombramiento,tareas,tipo])
+    
+    # #Table Body
+    styles = getSampleStyleSheet()
+    styleN = styles["Normal"]
+    styleN.alignment = reportlab.lib.enums.TA_LEFT
+    styleN.fontSize = 7
+
+    high = 405
+    for colaborador in colaboradores:
+        this_collaborator = [Paragraph(str(colaborador.entidad),styleN),Paragraph(str(colaborador.nombre),styleN),
+                             Paragraph(str(colaborador.cargo),styleN),Paragraph(str(colaborador.colegiado),styleN),
+                             Paragraph(str(colaborador.tipo_auditoria),styleN),Paragraph(str(colaborador.periodo),styleN),
+                             Paragraph(str(colaborador.nombramiento),styleN),Paragraph(str(colaborador.fecha_nombramiento),styleN),
+                             Paragraph(str(colaborador.tareas),styleN),Paragraph(str(colaborador.tipo),styleN)]
+        data.append(this_collaborator)
+        high -=18
+    
+    #table size
+    width,height = A4_horizontal
+    table = Table(data, colWidths=[2.5 * cm,3.5 * cm,2.5 * cm,2.5 * cm,2.5 * cm,2.5 * cm,2.5 * cm,2.5 * cm,3.0 * cm,2.0 * cm,])
+    table.setStyle(TableStyle([
+        ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
+        ('BOX',(0,0), (-1,-1), 0.25, colors.black)
+    ]))
+
+    #pdf size
+    table.wrapOn(pdf, width,height)
+    table.drawOn(pdf, 30, high)
+    pdf.showPage()
+
+    # Guarda el archivo PDF y cierra el objeto PDF
+    pdf.save()
+    pdfs = buffer.getvalue()
+    buffer.close()
+    response.write(pdfs)
+
+    return response
 
 
 def Notificacion(request):
