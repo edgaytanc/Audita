@@ -1,0 +1,44 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block 'content' %}
+
+<div class="row text-center">
+    <div class="col">
+        <h1>Biblioteca Guía</h1>
+        <p class="fst-italic">En esta área puede visualizar todos los archivos
+            necesarios para el trabajo de auditoría. </p>
+        <p class="fst-italic">Estas guías son una serie de pasos mínimos a desarrollar durante el
+            proceso en base a normas ya establecidas.</p>
+    </div>
+</div>
+
+<div class="row p-5">
+    
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card">
+        {% for archivo in archivos %}
+          <div class="card-body">
+            <div class="row">
+                {% comment %} <h5 class="card-title">{{ archivo.nombre }}</h5> {% endcomment %}
+            <a href="{{ archivo.archivo_pdf.url }}" target="_blank" class="btn btn-primary btn-block">GUÍA DE  {{ archivo.nombre|slice:": -4"|upper }}</a>
+            </div>
+            
+          </div>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 ">
+    
+        <img
+            src="{% static 'img/biblioteca.jpg' %}"
+            alt="Placeholder Image"
+            class="img-fluid"
+            />
+    </div>
+    
+</div>
+
+
+{% endblock 'content' %}

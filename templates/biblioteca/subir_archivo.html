@@ -1,0 +1,148 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block 'content' %}
+<div class="row text-center h-100">
+    <div class="col">
+        <br>
+        <h1>Biblioteca Guía - Carga de Archivos</h1>
+        <p class="fst-italic">En esta área debe cargar al sistema todos los archivos necesarios para el trabajo de auditoría</p>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col p-5">
+    <div class="card">
+      <div class="card-header">
+        <h2>Guía de Panificación</h2>
+      </div>
+      <div class="card-body">
+        <form action = "{% url 'subir_planificacion' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <input class="form-control" type="file" id="archivo_pdf" name="archivo_pdf" required>
+            <div class="row mt-3 ms-1 mx-1">
+              <input class="btn btn-primary btn-block" type="submit" value="Subir archivo" {% if planificacion %}disabled{% endif %}>
+            </div>
+          </div>  
+        </form>
+      </div>
+      <div class="card-footer">
+        {% if planificacion %}
+        <div class="p-3 mb-3 text-bg-danger rounded-3">{{planificacion}}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col p-5">
+    <div class="card">
+      <div class="card-header">
+        <h2>Guía de Evaluación</h2>
+      </div>
+      <div class="card-body">
+        <form action = "{% url 'subir_evaluacion' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <input class="form-control" type="file" id="archivo_evaluacion" name="archivo_evaluacion" required>
+            <div class="row mt-3 ms-1 mx-1">
+              <input class="btn btn-primary btn-block" type="submit" value="Subir archivo" {% if evaluacion %}disabled{% endif %} >
+            </div>
+          </div>  
+        </form>
+      </div>
+      <div class="card-footer">
+        {% if evaluacion %}
+        <div class="p-3 mb-3 text-bg-danger rounded-3">{{evaluacion}}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+  
+<div class="row">
+
+  <div class="col p-5">
+    <div class="card">
+      <div class="card-header">
+        <h2>Guía de Ejecucion</h2>
+      </div>
+      <div class="card-body">
+        <form action = "{% url 'subir_ejecucion' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <input class="form-control" type="file" id="archivo_ejecucion" name="archivo_ejecucion" required>
+            <div class="row mt-3 ms-1 mx-1">
+              <input class="btn btn-primary btn-block" type="submit" value="Subir archivo" {% if ejecucion %}disabled{% endif %}>
+            </div>
+          </div>  
+        </form>
+      </div>
+      <div class="card-footer">
+        {% if ejecucion %}
+        <div class="p-3 mb-3 text-bg-danger rounded-3">{{ejecucion}}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col p-5">
+    <div class="card">
+      <div class="card-header">
+        <h2>Guía de Resultados</h2>
+      </div>
+      <div class="card-body">
+        <form action = "{% url 'subir_resultado' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <input class="form-control" type="file" id="archivo_resultado" name="archivo_resultado" required>
+            <div class="row mt-3 ms-1 mx-1">
+              <input class="btn btn-primary btn-block" type="submit" value="Subir archivo" {% if resultado %}disabled{% endif %}>
+            </div>
+          </div>  
+        </form>
+      </div>
+      <div class="card-footer">
+        {% if resultado %}
+        <div class="p-3 mb-3 text-bg-danger rounded-3">{{resultado}}</div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col p-5">
+    <div class="card">
+      <div class="card-header">
+        <h2>Otras Guías</h2>
+      </div>
+      <div class="card-body">
+        <form action = "{% url 'subir_otro' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <input class="form-control" type="file" id="archivo_otro" name="archivo_otro" required>
+            <div class="row mt-3 ms-1 mx-1">
+              <input class="btn btn-primary btn-block" type="submit" value="Subir archivo" {% if otro %}disabled{% endif %}>
+            </div>
+          </div>  
+        </form>
+      </div>
+      <div class="card-footer">
+        {% if otro %}
+        <div class="p-3 mb-3 text-bg-danger rounded-3">{{otro}}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col p-5">
+    
+
+  </div>
+</div>
+
+  {% endblock 'content' %}
