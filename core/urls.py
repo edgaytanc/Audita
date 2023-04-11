@@ -32,6 +32,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('proyecto/', include('proyecto.urls')),
     path('biblioteca/',include('biblioteca.urls')),
+    path('herramientas/',include('herramientas.urls')),
     
 ]
 

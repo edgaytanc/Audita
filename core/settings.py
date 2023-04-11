@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'reportlab',
     'proyecto',
     'biblioteca',
+    'herramientas',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
