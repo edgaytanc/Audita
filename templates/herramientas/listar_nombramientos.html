@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block 'content' %}
+<h2>Nombramientos</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombramiento</th>
+      <th>Usuario</th>
+      <th>Nombre Completo</th>
+      <th>Cargo</th>
+      <th>Dias Programados</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for nombramiento in nombramientos %}
+      <tr>
+        <td>{{ nombramiento.id }}</td>
+        <td>{{ nombramiento.nombramiento}}</td>
+        <td>{{ nombramiento.user }}</td>
+        <td>{{ nombramiento.nombre_completo }}</td>
+        <td>{{ nombramiento.cargo }}</td>
+        <td>{{ nombramiento.dias_programados}}</td>
+        <td>
+          <a href="{% url 'editar_nombramiento' nombramiento.id %}" class="btn btn-warning">Editar</a>
+          <a href="{% url 'eliminar_nombramiento' nombramiento.id %}" class="btn btn-danger">Eliminar</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock 'content' %}

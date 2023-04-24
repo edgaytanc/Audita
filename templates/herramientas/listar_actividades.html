@@ -1,0 +1,54 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block 'content' %}
+
+
+
+    <h2>Listado de Actividades</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombramiento</th>
+                <th>Referencia</th>
+                <th>Actividad</th>
+                <th>Auditor Responsable</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Estado</th>
+                <th>Total de días</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for actividad in actividades %}
+                <tr>
+                    <td>{{ actividad.id }}</td>
+                    <td>{{ actividad.nombramiento }}</td>
+                    <td>{{ actividad.referencia }}</td>
+                    <td>{{ actividad.actividad }}</td>
+                    <td>{{ actividad.auditor }}</td>
+                    <td>{{ actividad.fecha_ini }}</td>
+                    <td>{{ actividad.fecha_fin }}</td>
+                    <td>{{ actividad.estado }}</td>
+                    <td>{{ actividad.totalDias }}</td>
+                    <td>
+                        <a href="{% url 'editar_actividad' actividad.id %}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{% url 'eliminar_actividad' actividad.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="10" class="text-center">No hay actividades registradas.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'crear_actividad' %}" class="btn btn-primary">Crear Actividad</a>
+
+
+
+
+{% endblock 'content' %}

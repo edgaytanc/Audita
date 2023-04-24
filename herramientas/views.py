@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa,padding
-from .models import Firma
+from .forms import NombramientoForm, ActividadForm
+from .models import Firma, Nombramiento, Actividad
+from django.contrib import messages
+from django.shortcuts import get_object_or_404
 
 
 
@@ -49,3 +52,98 @@ def generar_firma(request):
     firma_usuario.save()
 
     return render(request, 'herramientas/firma_generada.html', {'firma':signature.hex()})
+
+@login_required
+def crear_nombramiento(request):
+    if request.method == 'POST':
+        form = NombramientoForm(request.POST)
+        if form.is_valid():
+            nombramiento = form.save(commit=False)
+            #nombramiento.user = request.user
+            
+            # Comprueba si el usuario ya tiene un nombramiento
+            existing_nombramiento = Nombramiento.objects.filter(user=nombramiento.user)
+
+            # Imprime la consulta de filtrado y el resultado
+            print("Filtrando por usuario:", nombramiento.user)
+            print("Resultado de la consulta:", existing_nombramiento)
+
+            if existing_nombramiento.exists():
+                messages.error(request, 'El usuario ya tiene un nombramiento creado.')
+            else:
+                nombramiento.save()
+                messages.success(request, 'Nombramiento creado exitosamente')
+                return redirect('/herramientas/nombramiento')
+    else:
+        form = NombramientoForm()
+
+    context = {'form': form}
+    return render(request, 'herramientas/nombramiento.html', context)
+
+
+
+@login_required
+def listar_nombramientos(request):
+    nombramientos = Nombramiento.objects.all()
+    context = {'nombramientos': nombramientos}
+    return render(request, 'herramientas/listar_nombramientos.html', context)
+
+
+
+@login_required
+def editar_nombramiento(request, nombramiento_id):
+    nombramiento = get_object_or_404(Nombramiento, id=nombramiento_id)
+    if request.method == 'POST':
+        form = NombramientoForm(request.POST, instance=nombramiento)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Nombramiento actualizado exitosamente')
+            return redirect('/herramientas/listar_nombramientos')
+    else:
+        form = NombramientoForm(instance=nombramiento)
+
+    context = {'form': form}
+    return render(request, 'herramientas/editar_nombramiento.html', context)
+
+@login_required
+def eliminar_nombramiento(request, nombramiento_id):
+    nombramiento = get_object_or_404(Nombramiento, id=nombramiento_id)
+    nombramiento.delete()
+    messages.success(request, 'Nombramiento eliminado exitosamente')
+    return redirect('/herramientas/listar_nombramientos')
+
+
+
+@login_required
+def listar_actividades(request):
+    actividades = Actividad.objects.all()
+    return render(request, 'herramientas/listar_actividades.html', {'actividades': actividades})
+
+@login_required
+def crear_actividad(request):
+    if request.method == 'POST':
+        form = ActividadForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_actividades')
+    else:
+        form = ActividadForm()
+    return render(request, 'herramientas/crear_actividad.html', {'form': form})
+
+@login_required
+def editar_actividad(request, actividad_id):
+    actividad = Actividad.objects.get(id=actividad_id)
+    if request.method == 'POST':
+        form = ActividadForm(request.POST, instance=actividad)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_actividades')
+    else:
+        form = ActividadForm(instance=actividad)
+    return render(request, 'herramientas/editar_actividad.html', {'form': form})
+
+@login_required
+def eliminar_actividad(request, actividad_id):
+    actividad = Actividad.objects.get(id=actividad_id)
+    actividad.delete()
+    return redirect('listar_actividades')
