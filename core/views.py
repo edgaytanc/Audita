@@ -6,7 +6,6 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from .forms import RegistroForm
 
-
 @login_required
 def index(request):
     return render(request, 'index.html', {})

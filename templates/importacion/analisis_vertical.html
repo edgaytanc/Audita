@@ -1,0 +1,39 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block 'content' %}
+<div class="row text-center">
+    <div class="col">
+        <br>
+        <h1>Balance General-Analisis Vertical</h1>
+        <p class="fst-italic">En esta área se debe cargar el Balance General para su analisis Vertical</p>
+    </div>
+</div>
+
+<div class="row pt-5">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h2>Balance General</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" class="mb-4">
+                    {% csrf_token %}
+                    <div class="form-group">
+                    <label for="balance">Cargar balance general:</label>
+                    <input type="file" class="form-control-file" name="balance" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subir y analizar</button>
+                </form>
+            </div>
+            <div class="card-footer">
+                {% if output_file   %}
+                    <a href="{{ output_file.url }}" download class="btn btn-success">Descargar archivo de analisis</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock 'content' %}

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'proyecto',
     'biblioteca',
     'herramientas',
+    'importacion',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

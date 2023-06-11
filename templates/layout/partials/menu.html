@@ -79,10 +79,9 @@
                             role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Importar Archivos</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Importar
-                                    Estados Financieros</a></li>
-                            <li><a class="dropdown-item" href="#">Importar
-                                    Integraciones</a></li>
+                            
+                            <li><a class="dropdown-item" href="{% url 'carga_archivo' %}">Analisis horizontal</a></li>
+                            <li><a class="dropdown-item" href="{% url 'analisis_vertical' %}">Analisis Vertical</a></li>
                         </ul>
                     </li>
 
