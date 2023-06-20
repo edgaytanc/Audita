@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hola Victor,
+
+Por favor haga clic en el enlace para activar la cuenta de {{user.first_name}} {{user.last_name}}
+
+{{ protocol }}://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+
+
+El equipo de Audita
+{% endautoescape %}
+

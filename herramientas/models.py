@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from proyecto.models import AuditorSupervisor
+from django.conf import settings
 #from django.contrib.auth.middleware import get_user
 
 class Firma(models.Model):
-    user =      models.ForeignKey(User, on_delete=models.CASCADE)
+    user =      models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     firma =     models.BinaryField()
     creado_en = models.DateTimeField(auto_now_add=True)
 
@@ -14,7 +15,7 @@ class Firma(models.Model):
 
 
 class Nombramiento(models.Model):
-    user = models.ForeignKey(User, null=True,blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey('core.CustomUser', null=True,blank=True, on_delete=models.CASCADE)
     nombramiento =      models.CharField(max_length=10, null=False, blank=False, unique=True, verbose_name='Nombramiento')
     nombre_completo =   models.CharField(max_length=100, null=False,blank=False, verbose_name='Nombre Completo')
     cargo =             models.CharField(max_length=30, null=False, blank=False, verbose_name='Cargo')

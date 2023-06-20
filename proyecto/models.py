@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class Contacto(models.Model):
     nombre = models.CharField(max_length=100, verbose_name='Nombre Contacto')
@@ -82,7 +83,7 @@ class Tarea(models.Model):
     nombre = models.CharField(max_length=50, null=False, blank=False, verbose_name='Nombre Tarea')
     fecha_asignacion =models.DateField(null=False, blank=False, verbose_name='Fecha de Asignación')
     fecha_termino = models.DateField(null=False, blank=False, verbose_name='Fecha de Finalización')
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    usuario = models.ForeignKey('core.CustomUser', on_delete=models.CASCADE)
     descripcion_tarea = models.TextField(null=False, blank=False)
     autor_supervisor = models.ForeignKey(AuditorSupervisor, on_delete=models.CASCADE)
 
@@ -98,7 +99,7 @@ class Tarea(models.Model):
 
 class Notificacion(models.Model):
     nombre_notifica = models.CharField(max_length=50, null=False, blank=False, verbose_name='Nombre Notificante')
-    nombre_notificado = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Nombre Notificado')
+    nombre_notificado = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Nombre Notificado')
     nombramiento = models.CharField(max_length=50, null=False, blank=False, verbose_name='Nombramiento de Auditoria No.')
     entidad = models.ForeignKey(Entidad, on_delete=models.CASCADE)
     fecha_notificacion = models.DateField()

@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'biblioteca',
     'herramientas',
     'importacion',
+    'users',
+    'core',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -53,6 +55,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # Esta línea
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -65,7 +68,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,6 +123,8 @@ TIME_ZONE = 'America/Guatemala'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -139,8 +144,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/index'
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'login'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'pcychips@gmail.com'  # Tu dirección de correo electrónico de Gmail
+EMAIL_HOST_PASSWORD = 'vnqzsakdkyrkjqnw'  # Tu contraseña de Gmail
+
+AUTH_USER_MODEL = 'users.CustomUser' # modelo de usuario personalizado
+AUTHENTICATION_BACKENDS = ['users.backends.CustomUserModelBackend']
