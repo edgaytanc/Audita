@@ -18,7 +18,7 @@
                             role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Acceso Usuarios</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'signup' %}">Registro</a></li>
+                            {% comment %} <li><a class="dropdown-item" href="{% url 'signup' %}">Registro</a></li> {% endcomment %}
                             <li><a class="dropdown-item" href="{% url 'nombramiento' %}">Nombramientos</a></li>
                             <li><a class="dropdown-item" href="{% url 'listar_nombramientos' %}">Listado de Nombramientos</a></li>
                             {% comment %} <li><a class="dropdown-item" href="#">Usuarios {% endcomment %}
@@ -126,7 +126,7 @@
                             role="button" data-bs-toggle="dropdown"
                             aria-expanded="false"><b>{{user.username|upper}}</b></a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'change_password' %}">Cambiar Contraseña</a></li>
+                                {% comment %} <li><a class="dropdown-item" href="{% url 'change_password' %}">Cambiar Contraseña</a></li> {% endcomment %}
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
                             </ul>
                     </li>

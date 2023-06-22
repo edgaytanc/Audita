@@ -12,4 +12,5 @@ urlpatterns = [
     path('crear_actividad/', views.crear_actividad, name='crear_actividad'),
     path('editar_actividad/<int:actividad_id>/', views.editar_actividad, name='editar_actividad'),
     path('eliminar_actividad/<int:actividad_id>/', views.eliminar_actividad, name='eliminar_actividad'),
+    path('seleccionar_entidad/', views.seleccionar_entidad, name='seleccionar_entidad'),
 ]

@@ -3,6 +3,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit
 from .models import Nombramiento, Actividad
+from proyecto.models import Entidad
 
 class NombramientoForm(forms.ModelForm):
     class Meta:
@@ -67,3 +68,7 @@ class ActividadForm(forms.ModelForm):
             Field('observaciones', css_class='form-control'),
             Submit('submit', 'Crear', css_class='btn btn-primary'),
         )
+
+
+class SeleccionarEntidadForm(forms.Form):
+    entidad = forms.ModelChoiceField(queryset=Entidad.objects.all())

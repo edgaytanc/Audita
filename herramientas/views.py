@@ -7,8 +7,9 @@ from .forms import NombramientoForm, ActividadForm
 from .models import Firma, Nombramiento, Actividad
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
-
-
+from .forms import SeleccionarEntidadForm
+from proyecto.models import Entidad
+from .decorators import entidad_requerida
 
 @login_required
 def firma_a_generar(request):
@@ -54,6 +55,7 @@ def generar_firma(request):
     return render(request, 'herramientas/firma_generada.html', {'firma':signature.hex()})
 
 @login_required
+@entidad_requerida
 def crear_nombramiento(request):
     if request.method == 'POST':
         form = NombramientoForm(request.POST)
@@ -83,6 +85,7 @@ def crear_nombramiento(request):
 
 
 @login_required
+@entidad_requerida
 def listar_nombramientos(request):
     nombramientos = Nombramiento.objects.all()
     context = {'nombramientos': nombramientos}
@@ -91,6 +94,7 @@ def listar_nombramientos(request):
 
 
 @login_required
+@entidad_requerida
 def editar_nombramiento(request, nombramiento_id):
     nombramiento = get_object_or_404(Nombramiento, id=nombramiento_id)
     if request.method == 'POST':
@@ -106,6 +110,7 @@ def editar_nombramiento(request, nombramiento_id):
     return render(request, 'herramientas/editar_nombramiento.html', context)
 
 @login_required
+@entidad_requerida
 def eliminar_nombramiento(request, nombramiento_id):
     nombramiento = get_object_or_404(Nombramiento, id=nombramiento_id)
     nombramiento.delete()
@@ -115,11 +120,13 @@ def eliminar_nombramiento(request, nombramiento_id):
 
 
 @login_required
+@entidad_requerida
 def listar_actividades(request):
     actividades = Actividad.objects.all()
     return render(request, 'herramientas/listar_actividades.html', {'actividades': actividades})
 
 @login_required
+@entidad_requerida
 def crear_actividad(request):
     if request.method == 'POST':
         form = ActividadForm(request.POST)
@@ -131,6 +138,7 @@ def crear_actividad(request):
     return render(request, 'herramientas/crear_actividad.html', {'form': form})
 
 @login_required
+@entidad_requerida
 def editar_actividad(request, actividad_id):
     actividad = Actividad.objects.get(id=actividad_id)
     if request.method == 'POST':
@@ -143,7 +151,22 @@ def editar_actividad(request, actividad_id):
     return render(request, 'herramientas/editar_actividad.html', {'form': form})
 
 @login_required
+@entidad_requerida
 def eliminar_actividad(request, actividad_id):
     actividad = Actividad.objects.get(id=actividad_id)
     actividad.delete()
     return redirect('listar_actividades')
+
+@login_required
+
+def seleccionar_entidad(request):
+    if request.method == 'POST':
+        form = SeleccionarEntidadForm(request.POST)
+        if form.is_valid():
+            entidad_seleccionada = form.cleaned_data.get('entidad')
+            request.session['entidad_seleccionada_id'] = entidad_seleccionada.id
+            return redirect('index')
+    else:
+        form = SeleccionarEntidadForm()
+
+    return render(request, 'herramientas/seleccionar_entidad.html', {'form': form})

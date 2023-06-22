@@ -14,7 +14,12 @@ from .forms import ContactoForm, EntidadFrom, AuditorSupervisorForm, Notificacio
 from proyecto.models import Contacto, AuditorSupervisor
 from datetime import datetime
 
+from django.contrib.auth.decorators import login_required
+from herramientas.decorators import entidad_requerida
+
 #Ingresa nuevos contactos
+@login_required
+@entidad_requerida
 def ContactoPro(request):
     contacto_form = ContactoForm()
 
@@ -32,6 +37,8 @@ def ContactoPro(request):
     return render(request, 'proyecto/contacto.html',{'form':contacto_form})
 
 # Despliega el listado de los contactos
+@login_required
+@entidad_requerida
 def lista_Contacto(request):
     contactos = Contacto.objects.all()
     context = {
@@ -40,6 +47,8 @@ def lista_Contacto(request):
     return render(request, 'proyecto/lista_contactos.html', context)
 
 #busca un contacto y lo despliega
+@login_required
+@entidad_requerida
 def detalle_contacto(request):
     contacto_id = request.GET.get('id')
     contacto = Contacto.objects.get(id=contacto_id)
@@ -49,6 +58,8 @@ def detalle_contacto(request):
     return render(request, 'proyecto/detalle_contacto.html', context)
 
 #Imprime en pdf la lista de contactos
+@login_required
+@entidad_requerida
 def imprimir_contactos(request):
     contactos = Contacto.objects.all()
     
@@ -137,6 +148,8 @@ def Entidad(request):
             return redirect(reverse('entidad')+'?error')
     return render(request, 'proyecto/entidad.html',{'form':entidad_form})
 
+@login_required
+@entidad_requerida
 def AuditorSupervisorPro(request):
     cargaColaborador(request)
     auditorSupervisor_form = AuditorSupervisorForm()
@@ -150,14 +163,20 @@ def AuditorSupervisorPro(request):
             return redirect(reverse('auditorSupervisor')+'?error')
     return render(request, 'proyecto/auditorSupervisor.html',{'form':auditorSupervisor_form})
 
+@login_required
+@entidad_requerida
 def cargaColaborador(request):
     colaboradores = AuditorSupervisor.objects.all()
     return render(request,'proyecto/colaborador.html',{'colaboradores':colaboradores})
 
+@login_required
+@entidad_requerida
 def editarColaborador(request,nombre):
     colaborador = AuditorSupervisor.objects.get(nombre=nombre)
     return render(request, 'proyecto/editarColaborador.html',{'colaborador':colaborador})
 
+@login_required
+@entidad_requerida
 def editaColaborador(request):
     entidad = request.POST['entidad']
     nombre = request.POST['nombre']
@@ -185,6 +204,8 @@ def editaColaborador(request):
     colaborador.save()
     return redirect(reverse('cargaColaborador'))
 
+@login_required
+@entidad_requerida
 def eliminarColaborador(request,nombre):
     colaborador = AuditorSupervisor.objects.get(nombre=nombre)
     colaborador.delete()
@@ -193,6 +214,8 @@ def eliminarColaborador(request,nombre):
 
 
 #imprime en pdf el listado de colaboradores de todas las entidades
+@login_required
+@entidad_requerida
 def imprimirColaborador(request):
     colaboradores = AuditorSupervisor.objects.all()
     response = HttpResponse(content_type='application/pdf')
@@ -277,7 +300,8 @@ def imprimirColaborador(request):
 
     return response
 
-
+@login_required
+@entidad_requerida
 def Notificacion(request):
     notificacion_form = NotificacionForm()
 

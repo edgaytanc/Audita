@@ -6,6 +6,11 @@ from django.views.generic import View
 from .models import Archivo
 import os
 
+from django.contrib.auth.decorators import login_required
+from herramientas.decorators import entidad_requerida
+
+@login_required
+@entidad_requerida
 def subir_archivo(request):
     mensaje_planificacion =''
     mensaje_evaluacion =''
@@ -32,6 +37,8 @@ def subir_archivo(request):
         
     return render(request, 'biblioteca/subir_archivo.html',context)
 
+@login_required
+@entidad_requerida
 def subir_archivo_planificacion(request):
     if request.method == 'POST' and request.FILES['archivo_pdf']:
         archivo = request.FILES['archivo_pdf']
@@ -49,6 +56,8 @@ def subir_archivo_planificacion(request):
             mensaje=''   
     return render(request, 'biblioteca/subir_archivo.html',{'mensaje': mensaje})
 
+@login_required
+@entidad_requerida
 def subir_archivo_evaluacion(request):
     if request.method == 'POST' and request.FILES['archivo_evaluacion']:
         archivo = request.FILES['archivo_evaluacion']
@@ -69,7 +78,8 @@ def subir_archivo_evaluacion(request):
         
     return render(request, 'biblioteca/subir_archivo.html',{'mensaje': mensaje})
 
-
+@login_required
+@entidad_requerida
 def subir_archivo_resultado(request):
     if request.method == 'POST' and request.FILES['archivo_resultado']:
         archivo = request.FILES['archivo_resultado']
@@ -90,6 +100,8 @@ def subir_archivo_resultado(request):
         
     return render(request, 'biblioteca/subir_archivo.html',{'mensaje': mensaje})
 
+@login_required
+@entidad_requerida
 def subir_archivo_ejecucion(request):
     if request.method == 'POST' and request.FILES['archivo_ejecucion']:
         archivo = request.FILES['archivo_ejecucion']
@@ -110,7 +122,8 @@ def subir_archivo_ejecucion(request):
         
     return render(request, 'biblioteca/subir_archivo.html',{'mensaje': mensaje})
 
-
+@login_required
+@entidad_requerida
 def subir_archivo_otro(request):
     if request.method == 'POST' and request.FILES['archivo_otro']:
         archivo = request.FILES['archivo_otro']
@@ -131,7 +144,8 @@ def subir_archivo_otro(request):
         
     return render(request, 'biblioteca/subir_archivo.html',{'mensaje': mensaje})
 
-
+@login_required
+@entidad_requerida
 def despliega_archivos(request):
     archivos = Archivo.objects.all()
     return render(request, 'biblioteca/guias.html',{'archivos':archivos})

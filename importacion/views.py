@@ -8,7 +8,12 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import pandas as pd
 import io
+from django.contrib.auth.decorators import login_required
+from herramientas.decorators import entidad_requerida
 
+
+@login_required
+@entidad_requerida
 def carga_archivos(request):
     if request.method == 'POST':
         form = BalanceGeneralForm(request.POST, request.FILES)
@@ -44,6 +49,8 @@ def carga_archivos(request):
     return render(request,'importacion/carga_archivos.html',{'form':form})
 
 
+@login_required
+@entidad_requerida
 def analisis_vertical(request):
     if request.method == 'POST':
         # Carga el archivo xlsx desde el formulario
