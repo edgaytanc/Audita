@@ -15,9 +15,17 @@ class EntidadFrom(forms.ModelForm):
         fields = '__all__'
 
 class AuditorSupervisorForm(forms.ModelForm):
+    entidad = forms.ModelChoiceField(queryset=Entidad.objects.all())
+
     class Meta:
         model = AuditorSupervisor
-        fields = '__all__'
+        fields = ['entidad', 'nombre', 'cargo', 'colegiado', 'tipo_auditoria', 'periodo', 'nombramiento', 'fecha_nombramiento', 'tareas', 'tipo']
+
+    def __init__(self, *args, **kwargs):
+        entidad_seleccionada_id = kwargs.pop('entidad_seleccionada_id', None)
+        super().__init__(*args, **kwargs)
+        if entidad_seleccionada_id:
+            self.fields['entidad'].initial = entidad_seleccionada_id
 
     fecha_nombramiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
 

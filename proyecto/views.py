@@ -19,7 +19,6 @@ from herramientas.decorators import entidad_requerida
 
 #Ingresa nuevos contactos
 @login_required
-@entidad_requerida
 def ContactoPro(request):
     contacto_form = ContactoForm()
 
@@ -38,7 +37,6 @@ def ContactoPro(request):
 
 # Despliega el listado de los contactos
 @login_required
-@entidad_requerida
 def lista_Contacto(request):
     contactos = Contacto.objects.all()
     context = {
@@ -48,7 +46,6 @@ def lista_Contacto(request):
 
 #busca un contacto y lo despliega
 @login_required
-@entidad_requerida
 def detalle_contacto(request):
     contacto_id = request.GET.get('id')
     contacto = Contacto.objects.get(id=contacto_id)
@@ -59,7 +56,6 @@ def detalle_contacto(request):
 
 #Imprime en pdf la lista de contactos
 @login_required
-@entidad_requerida
 def imprimir_contactos(request):
     contactos = Contacto.objects.all()
     
@@ -152,16 +148,18 @@ def Entidad(request):
 @entidad_requerida
 def AuditorSupervisorPro(request):
     cargaColaborador(request)
-    auditorSupervisor_form = AuditorSupervisorForm()
+    entidad_seleccionada_id = request.session.get('entidad_seleccionada_id')
+    auditorSupervisor_form = AuditorSupervisorForm(entidad_seleccionada_id=entidad_seleccionada_id)
 
     if request.method == 'POST':
-        auditorSupervisor_form = AuditorSupervisorForm(data=request.POST)
+        auditorSupervisor_form = AuditorSupervisorForm(data=request.POST, entidad_seleccionada_id=entidad_seleccionada_id)
         if auditorSupervisor_form.is_valid():
             auditorSupervisor_form.save()
             return redirect(reverse('auditorSupervisor')+'?ok')
         else:
             return redirect(reverse('auditorSupervisor')+'?error')
     return render(request, 'proyecto/auditorSupervisor.html',{'form':auditorSupervisor_form})
+
 
 @login_required
 @entidad_requerida
