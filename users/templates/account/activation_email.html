@@ -1,6 +1,12 @@
 {% autoescape off %}
 Hola Victor,
 
+Un suario se ha registrado:
+Nombre: {{user.first_name}} {{user.last_name}}
+Correo Electrónico: {{user.email}}
+Fecha: {% now "DATE_FORMAT" %}
+Hora: {% now "TIME_FORMAT" %}
+
 Por favor haga clic en el enlace para activar la cuenta de {{user.first_name}} {{user.last_name}}
 
 {{ protocol }}://{{ domain }}{% url 'activate' uidb64=uid token=token %}

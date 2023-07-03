@@ -94,12 +94,14 @@ def analizar_balance_vertical(archivo_excel):
 
     analisis_vertical['PORCENTAJE'] = porcentaje
 
-    return analisis_vertical
+    # Devuelve los nombres de las cuentas, los saldos y los porcentajes
+    return analisis_vertical['CUENTA'], analisis_vertical['SALDO'], analisis_vertical['PORCENTAJE']
 
 
 
 
-def guardar_analisis_vertical_excel(df, archivo_resultado):
+
+def guardar_analisis_vertical_excel(cuentas_anterior, saldo_anterior, porcentaje_anterior, cuentas_actual, saldo_actual, porcentaje_actual, archivo_resultado):
     wb = Workbook()
     ws = wb.active
 
@@ -107,7 +109,7 @@ def guardar_analisis_vertical_excel(df, archivo_resultado):
     ws.column_dimensions['A'].width = 15.5
 
     # Combina y centra las celdas A1, B1 y C1
-    ws.merge_cells('A1:C1')
+    ws.merge_cells('A1:E1')
     titulo_celda = ws['A1']
 
     # Escribe el título "Análisis Vertical de Balance General" en la fila 1
@@ -116,24 +118,20 @@ def guardar_analisis_vertical_excel(df, archivo_resultado):
     titulo_celda.value = titulo
     titulo_celda.font = Font(bold=True, size=13)
 
-    # Escribe el DataFrame en la hoja de cálculo
-    for r_idx, row in enumerate(dataframe_to_rows(df, index=False, header=True)):
-        ws.append(row)
+    # Escribe los encabezados
+    ws.append(['CUENTA', 'SALDO ANTERIOR', 'PORCENTAJE ANTERIOR', 'SALDO ACTUAL', 'PORCENTAJE ACTUAL'])
 
-        # Aplica el formato a la fila de encabezado
-        if r_idx == 0:
-            for cell in ws[r_idx + 2]:
-                cell.font = Font(bold=True, size=12)
-        else:
-            # Aplica el formato a las filas que contienen "TOTAL ACTIVO", "TOTAL PASIVO" y "TOTAL PASIVO Y PATRIMONIO"
-            if row[0] in ("TOTAL ACTIVO", "TOTAL PASIVO", "TOTAL PASIVO Y PATRIMONIO"):
-                for cell in ws[r_idx + 2]:
-                    cell.font = Font(bold=True, size=12)
-    
+    # Escribe los datos
+    for cuenta_ant, saldo_ant, porcentaje_ant, cuenta_act, saldo_act, porcentaje_act in zip(cuentas_anterior, saldo_anterior, porcentaje_anterior, cuentas_actual, saldo_actual, porcentaje_actual):
+        # Asegúrate de que las cuentas coinciden antes de escribir los datos
+        assert cuenta_ant == cuenta_act, f"Las cuentas no coinciden: {cuenta_ant} != {cuenta_act}"
+        ws.append([cuenta_ant, saldo_ant, porcentaje_ant, saldo_act, porcentaje_act])
+
     # Aplica formato numerico a las columnas
     for row in ws.iter_rows(min_row=3):
-        row[1].number_format = '#,##0.00;[Red]-#,##0.00'
-        row[2].number_format = '#,##0.00;[Red]-#,##0.00'
+        for cell in row[1:]:
+            cell.number_format = '#,##0.00;[Red]-#,##0.00'
 
     # Guarda el archivo de Excel
     wb.save(archivo_resultado)
+

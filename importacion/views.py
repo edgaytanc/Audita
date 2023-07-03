@@ -53,29 +53,30 @@ def carga_archivos(request):
 @entidad_requerida
 def analisis_vertical(request):
     if request.method == 'POST':
-        # Carga el archivo xlsx desde el formulario
-        archivo_balance = request.FILES['balance']
+        # Carga los archivos xlsx desde el formulario
+        archivo_anterior = request.FILES['archivo_anterior']
+        archivo_actual = request.FILES['archivo_actual']
+
         fs = FileSystemStorage()
-        nombre_archivo = fs.save(archivo_balance.name, archivo_balance)
-        ruta_archivo = os.path.join(settings.MEDIA_ROOT, nombre_archivo)
+        nombre_archivo_anterior = fs.save(archivo_anterior.name, archivo_anterior)
+        ruta_archivo_anterior = os.path.join(settings.MEDIA_ROOT, nombre_archivo_anterior)
 
-        # Lee el archivo xlsx y crea un DataFrame
-        df = pd.read_excel(ruta_archivo)
+        nombre_archivo_actual = fs.save(archivo_actual.name, archivo_actual)
+        ruta_archivo_actual = os.path.join(settings.MEDIA_ROOT, nombre_archivo_actual)
 
-        # Aplica el análisis vertical
-        resultado = analizar_balance_vertical(ruta_archivo)
+        # Realiza el análisis vertical en los archivos
+        cuentas_anterior, saldo_anterior, porcentaje_anterior = analizar_balance_vertical(ruta_archivo_anterior)
+        cuentas_actual, saldo_actual, porcentaje_actual = analizar_balance_vertical(ruta_archivo_actual)
 
         # Guarda el resultado en un archivo xlsx
         archivo_resultado = 'analisis_vertical.xlsx'
-        guardar_analisis_vertical_excel(resultado, archivo_resultado)
+        guardar_analisis_vertical_excel(cuentas_anterior, saldo_anterior, porcentaje_anterior, cuentas_actual, saldo_actual, porcentaje_actual, archivo_resultado)
 
-        
-
-        # Eviar archivo generado como respuesta
+        # Envia el archivo generado como respuesta
         with open(archivo_resultado, 'rb') as f:
             response = HttpResponse(f.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
             response['Content-Disposition'] = f'attachment; filename={archivo_resultado}'
-            os.remove(archivo_resultado) # Elimina el archivo despues de enviarlo
+            os.remove(archivo_resultado)  # Elimina el archivo después de enviarlo
             return response
 
     return render(request, 'importacion/analisis_vertical.html')

@@ -10,6 +10,9 @@ from django.shortcuts import get_object_or_404
 from .forms import SeleccionarEntidadForm
 from proyecto.models import Entidad
 from .decorators import entidad_requerida
+from django.contrib.auth import get_user_model
+
+
 
 @login_required
 def firma_a_generar(request):
@@ -57,20 +60,18 @@ def generar_firma(request):
 @login_required
 @entidad_requerida
 def crear_nombramiento(request):
+    User = get_user_model()
+    
     if request.method == 'POST':
         form = NombramientoForm(request.POST)
         if form.is_valid():
             nombramiento = form.save(commit=False)
-            #nombramiento.user = request.user
+            
             
             # Comprueba si el usuario ya tiene un nombramiento
-            existing_nombramiento = Nombramiento.objects.filter(user=nombramiento.user)
+            existing_nombramiento = Nombramiento.objects.filter(user=nombramiento.user).exists()
 
-            # Imprime la consulta de filtrado y el resultado
-            print("Filtrando por usuario:", nombramiento.user)
-            print("Resultado de la consulta:", existing_nombramiento)
-
-            if existing_nombramiento.exists():
+            if existing_nombramiento:
                 messages.error(request, 'El usuario ya tiene un nombramiento creado.')
             else:
                 nombramiento.save()

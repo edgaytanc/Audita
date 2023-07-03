@@ -8,7 +8,7 @@ from proyecto.models import Entidad
 class NombramientoForm(forms.ModelForm):
     class Meta:
         model = Nombramiento
-        fields = ['user','nombramiento', 'nombre_completo', 'cargo', 'dias_programados']
+        fields = ['nombramiento', 'nombre_completo', 'cargo', 'dias_programados','user']
         labels = {
             'user':'Usuario',
             'nombramiento': 'Nombramiento',

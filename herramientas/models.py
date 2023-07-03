@@ -14,7 +14,7 @@ class Firma(models.Model):
 
 
 class Nombramiento(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,blank=False, on_delete=models.CASCADE, verbose_name='Usuario')
     nombramiento =      models.CharField(max_length=10, null=False, blank=False, unique=True, verbose_name='Nombramiento')
     nombre_completo =   models.CharField(max_length=100, null=False,blank=False, verbose_name='Nombre Completo')
     cargo =             models.CharField(max_length=30, null=False, blank=False, verbose_name='Cargo')
