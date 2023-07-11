@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import ActividadListView, ActividadCreateView, ActividadUpdateView, ActividadDeleteView
 
 urlpatterns = [
     path('firma/', views.generar_firma,name='firma'),
@@ -13,4 +14,11 @@ urlpatterns = [
     path('editar_actividad/<int:actividad_id>/', views.editar_actividad, name='editar_actividad'),
     path('eliminar_actividad/<int:actividad_id>/', views.eliminar_actividad, name='eliminar_actividad'),
     path('seleccionar_entidad/', views.seleccionar_entidad, name='seleccionar_entidad'),
+    path('actividad_list/', ActividadListView.as_view(), name='actividad_list'),
+    path('new/', ActividadCreateView.as_view(), name='actividad_new'),
+    path('<int:pk>/edit/', ActividadUpdateView.as_view(), name='actividad_edit'),
+    path('<int:pk>/delete/', ActividadDeleteView.as_view(), name='actividad_delete'),
+    path('actividades_excel/', views.some_view, name='actividades_excel'), #genera un archivo excel para descargar
+    path('cronograma/', views.cronograma, name='cronograma'),
+    path('resumen_tiempo/', views.resumen_tiempo, name='resumen_tiempo'),
 ]

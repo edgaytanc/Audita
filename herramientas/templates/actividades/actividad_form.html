@@ -1,0 +1,133 @@
+{% extends 'layout/base.html' %}
+
+{% block 'content' %}
+
+<div class = "m-5">
+<div class="card">
+  <div class="card-header">
+    <h2>Nueva Actividad</h2>
+  </div>
+  <div class="card-body">
+    <form method = "POST">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col p-5">
+          <div class="form-group">
+            {{form.actividad.label_tag}}
+            {{form.actividad}}
+            {{form.actividad.errors}}
+          </div>
+          <div class="form-group">
+            {{ form.referencia.label_tag }}
+            {{ form.referencia }}
+            {{ form.referencia.errors }}
+          </div>
+          <div class="form-group">
+            {{form.nombramiento.label_tag}}
+            {{form.nombramiento}}
+            {{form.nombramiento.errors}}
+          </div>
+          <div class="form-group">
+            {{form.auditor.label_tag}}
+            {{form.auditor}}
+            {{form.auditor.errors}}
+          </div>
+          <div class="form-group">
+            {{form.fecha_inicio.label_tag}}
+            {{form.fecha_inicio}}
+            {{form.fecha_inicio.errors}}
+          </div>
+          <div class="form-group">
+            {{form.fecha_finalizacion.label_tag}}
+            {{form.fecha_finalizacion}}
+            {{form.fecha_finalizacion.errors}}
+          </div>
+          <div class="form-group">
+            {{form.estado_actual.label_tag}}
+            {{form.estado_actual}}
+            {{form.estado_actual.errors}}
+          </div>
+          <div class="form-group">
+            {{form.observaciones.label_tag}}
+            {{form.observaciones}}
+            {{form.observaciones.errors}}
+          </div>
+        </div>
+        <div class="col p-5">
+          <div class="form-group">
+            {{form.enero.label_tag}}
+            {{form.enero}}
+            {{form.enero.errors}}
+          </div>
+          <div class="form-group">
+            {{form.febrero.label_tag}}
+            {{form.febrero}}
+            {{form.febrero.errors}}
+          </div>
+          <div class="form-group">
+            {{form.marzo.label_tag}}
+            {{form.marzo}}
+            {{form.marzo.errors}}
+          </div>
+          <div class="form-group">
+            {{form.abril.label_tag}}
+            {{form.abril}}
+            {{form.abril.errors}}
+          </div>
+          <div class="form-group">
+            {{form.mayo.label_tag}}
+            {{form.mayo}}
+            {{form.mayo.errors}}
+          </div>
+          <div class="form-group">
+            {{form.junio.label_tag}}
+            {{form.junio}}
+            {{form.junio.errors}}
+          </div>
+          <div class="form-group">
+            {{form.julio.label_tag}}
+            {{form.julio}}
+            {{form.julio.errors}}
+          </div>
+          <div class="form-group">
+            {{form.agosto.label_tag}}
+            {{form.agosto}}
+            {{form.agosto.errors}}
+          </div>
+          <div class="form-group">
+            {{form.septiembre.label_tag}}
+            {{form.septiembre}}
+            {{form.septiembre.errors}}
+          </div>
+          <div class="form-group">
+            {{form.octubre.label_tag}}
+            {{form.octubre}}
+            {{form.octubre.errors}}
+          </div>
+          <div class="form-group">
+            {{form.noviembre.label_tag}}
+            {{form.noviembre}}
+            {{form.nobiembre.errors}}
+          </div>
+          <div class="form-group">
+            {{form.diciembre.label_tag}}
+            {{form.diciembre}}
+            {{form.diciembre.errors}}
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row p-5">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+        
+      </div>
+    </form>
+    </div>
+  </div>
+  
+</div>
+</div>
+
+{% endblock 'content' %}
+

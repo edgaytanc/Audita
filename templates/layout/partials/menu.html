@@ -65,9 +65,9 @@
                             aria-expanded="false">Herramientas</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'firma_generar' %}">Firma Electrónica</a></li>
-                            <li><a class="dropdown-item" href="{% url 'crear_actividad'%}">Actividades</a></li>
-                            <li><a class="dropdown-item" href="{% url 'listar_actividades'%}">Listado de Actividades</a></li>
-                            <li><a class="dropdown-item" href="/pages/tools/time-summary.html">Resumen de tiempo Auditoría</a></li>
+                            <li><a class="dropdown-item" href="{% url 'cronograma'%}">Actividades</a></li>
+                            {% comment %} <li><a class="dropdown-item" href="{% url 'listar_actividades'%}">Listado de Actividades</a></li> {% endcomment %}
+                            <li><a class="dropdown-item" href="{%url 'resumen_tiempo'%}">Resumen de tiempo Auditoría</a></li>
                             <li><a class="dropdown-item" href="#">Marcas de Auditoría</a></li>
                             <li><a class="dropdown-item" href="#">Tipos de monedas</a></li>
                         </ul>

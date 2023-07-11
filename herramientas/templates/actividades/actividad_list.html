@@ -1,0 +1,52 @@
+{% extends 'layout/base.html' %}
+
+{% block 'content' %}
+<div class="p-5">
+  <h2>Lista de Actividades</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Actividad</th>
+        <th scope="col">Referencia</th>
+        <th scope="col">Nombramiento</th>
+        <th scope="col">Auditor</th>
+        <th scope="col">Fecha de Inicio</th>
+        <th scope="col">Fecha de Finalización</th>
+        <th scope="col">Estado Actual</th>
+        <th scope="col">Total de Días</th>
+        <th scope="col">Observaciones</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for actividad in object_list %}
+        <tr>
+          <td>{{ actividad.actividad }}</td>
+          <td>{{ actividad.referencia }}</td>
+          <td>{{ actividad.nombramiento }}</td>
+          <td>{{ actividad.auditor }}</td>
+          <td>{{ actividad.fecha_inicio }}</td>
+          <td>{{ actividad.fecha_finalizacion }}</td>
+          <td>{{ actividad.estado_actual }}</td>
+          <td>{{ actividad.total_dias }}</td>
+          <td>{{ actividad.observaciones }}</td>
+          <td>
+            <a class = "btn btn-success "href="{% url 'actividad_edit' actividad.pk %}">Editar</a> |
+            <a class = "btn btn-danger " href="{% url 'actividad_delete' actividad.pk %}">Borrar</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col">
+      <a class = "btn btn-primary" href="{% url 'actividad_new' %}">Crear nueva actividad</a>
+    </div>
+    <div class="col">
+      <a class = "btn btn-success" href="{% url 'actividades_excel' %}">Descargar Excel</a>
+    </div>
+  </div>
+  
+</div>
+  
+{% endblock 'content' %}

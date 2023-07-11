@@ -1,0 +1,32 @@
+{% extends 'layout/base.html' %}
+
+{% block 'content' %}
+<div class="row p-4">
+    <h2 class="text-center">Cronograma de Actividades</h2>
+    <p>
+        <b>Instrucción:</b> Debes hacer Clic para abrir en el nombre del archivo, 
+        para que puedas visualizar y trabajar la plantilla hacerle cambios, guardar, 
+        descargar en Excel o PDF, enviar el archivo por correo y hacer videollamadas. 
+    </p>
+    <div class="col-2">
+        <h4>
+            Archivo
+        </h4>
+        {% comment %} <a href="" id="loadButton">File: cronogramadeactividades.xls</a> {% endcomment %}
+        <button id="loadButton" class="btn btn-primary">cronogramadeactividades.xls</button>
+    </div>
+    <div class="col" id="spreadsheetContainer">
+        
+    </div>
+</div>
+
+<script>
+    document.getElementById('loadButton').addEventListener('click', function(){
+        var iframe = document.createElement('iframe');
+        iframe.src = "{{cronograma_url}}"
+        iframe.width = "100%";
+        iframe.height = "800";
+        document.getElementById('spreadsheetContainer').appendChild(iframe);
+    });
+</script>
+{% endblock 'content' %}
