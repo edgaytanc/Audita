@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'importacion',
     'users',
     'core',
+    'auditoria',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

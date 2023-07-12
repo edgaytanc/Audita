@@ -2,20 +2,46 @@
 
 {% block 'content' %}
 <div class="row p-4">
-    <h2 class="text-center">Resumen de tiempo Auditoría</h2>
+    <h2 class="text-center">Fase 1: Directrices</h2>
     <p>
         <b>Instrucción:</b> Debes hacer Clic para abrir en el nombre del archivo, 
         para que puedas visualizar y trabajar la plantilla hacerle cambios, guardar, 
         descargar en Excel o PDF, enviar el archivo por correo y hacer videollamadas. 
     </p>
     <div class="col-2">
-        <h4>
-            Archivo
-        </h4>
+        
         {% comment %} <a href="" id="loadButton">File: cronogramadeactividades.xls</a> {% endcomment %}
-        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{resumen_tiempo_url}}">resumendeltiempo.xls</button>
-        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{resumen_horas_url}}">resumenhorastrabajadas.xls</button>
-        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{estado_papeles_url}}">estadodepapelesdetrabajo.xls</button>
+        <table class="table-secondary">
+            <thead>
+                <th><H3>Papel de trabajo</H3></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{auditoria_interna_url}}">Estatuto de Auditoría Interna</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{codigo_etica_url}}">Código de Etica de Auditoría Interna</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{independencia_url}}">Declaración de Independencia</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{confidencialidad_url}}">Declaración de Confidencialidad</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+        
+        
     </div>
     <div class="col" id="spreadsheetContainer">
         <iframe sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" src="" width="100%" height="800"></iframe>
