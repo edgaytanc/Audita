@@ -1,5 +1,5 @@
 {% extends 'layout/base.html' %}
-
+{% load static %}
 {% block 'content' %}
 <div class="row p-4">
     <h2 class="text-center">Fase 1: Directrices</h2>
@@ -18,22 +18,22 @@
             <tbody>
                 <tr>
                     <td>
-                        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{auditoria_interna_url}}">Estatuto de Auditoría Interna</button>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{auditoria_interna_url}}">Estatuto de Auditoría Interna</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{codigo_etica_url}}">Código de Etica de Auditoría Interna</button>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{codigo_etica_url}}">Código de Etica de Auditoría Interna</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{independencia_url}}">Declaración de Independencia</button>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{independencia_url}}">Declaración de Independencia</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{confidencialidad_url}}">Declaración de Confidencialidad</button>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{confidencialidad_url}}">Declaración de Confidencialidad</button>
                     </td>
                 </tr>
             </tbody>

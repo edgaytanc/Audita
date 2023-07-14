@@ -1,5 +1,5 @@
 {% extends 'layout/base.html' %}
-
+{% load static %}
 {% block 'content' %}
 <div class="row p-4">
     <h2 class="text-center">Fase 2: Planeación</h2>
@@ -21,42 +21,259 @@
                         <div class="accordion accordion.flush" id="acoordionFlushPlanning">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                  <button  class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                     Planificación
                                   </button>
                                 </h2>
                                 <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
                                   <div class="accordion-body">
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{plan_estrategico_url}}">planificación Estratégica</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{plan_auditoria_url}}">Planificación Anual basada en Riesgos</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{plan_estrategico_url}}">planificación Estratégica</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{plan_auditoria_url}}">Planificación Anual basada en Riesgos</button>
                                   </div>
                                 </div>
                             </div>
                             
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                  <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                                     Estudio Preliminar
                                   </button>
                                 </h2>
                                 <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
                                   <div class="accordion-body">
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{entendimiento_entidad_url}}">Entendimiento de la Entidad</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{reunion_preliminar_url}}">Reunión Preliminar</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{entrevista_gerencia_url}}">Entrevista con Gerencia</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{analisis_horizontal_url}}">Analisis Horizontal Estados Financieros</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{analisis_vertical_url}}">Analisis Vertical Estados Financieros</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{revision_estatutos_url}}">Revisión de Estatutos</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{revision_actas_url}}">Revisión de Actas</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{revision_contratos_url}}">Revisión de Contratos</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{revision_manual_url}}">Revisión de Manual</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{revision_correspondencia_url}}">Revisión de Correspondencia</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{revision_informes_url}}">Revisión de Informes de Auditoría</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{cuestionario_evaluacion_url}}">Cuestionario de Evaluación de Control</button>
-                                    <button class="loadButton btn btn-primary m-2" style="width: 100%;" data-url="{{evaluacion_cumplimiento_url}}">Evaluación de cumplimiento</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_entidad_url}}">Entendimiento de la Entidad</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{reunion_preliminar_url}}">Reunión Preliminar</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entrevista_gerencia_url}}">Entrevista con Gerencia</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{analisis_horizontal_url}}">Analisis Horizontal Estados Financieros</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{analisis_vertical_url}}">Analisis Vertical Estados Financieros</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{revision_estatutos_url}}">Revisión de Estatutos</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{revision_actas_url}}">Revisión de Actas</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{revision_contratos_url}}">Revisión de Contratos</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{revision_manual_url}}">Revisión de Manual</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{revision_correspondencia_url}}">Revisión de Correspondencia</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{revision_informes_url}}">Revisión de Informes de Auditoría</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_url}}">Cuestionario de Evaluación de Control</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cumplimiento_url}}">Evaluación de cumplimiento</button>
                                   </div>
                                 </div>
                             </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                    Área de Caja y Bancos
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                  <div class="accordion-body">
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_url}}">Documentar el Proceso</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_url}}">Evaluación de Riesgos y Controles</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_url}}">Evaluación de Eficacia Operativa</button>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed font-btn" type="button font-btn" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                    Área de Cuentas por Cobrar
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                  <div class="accordion-body">
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_cobrar_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_cobrar_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_cobrar_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_cobrar_url}}">Documentar el Proceso</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_cobrar_url}}">Evaluación de Riesgos y Controles</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_cobrar_url}}">Evaluación de Eficacia Operativa</button>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                    Área de Inversiones
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                  <div class="accordion-body">
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_inversion_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_inversion_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_inversion_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_inversion_url}}">Documentar el Proceso</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_inversion_url}}">Evaluación de Riesgos y Controles</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_inversion_url}}">Evaluación de Eficacia Operativa</button>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                                    Área de Construcciones en Proceso
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                  <div class="accordion-body">
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_construccion_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_construccion_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_construccion_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_construccion_url}}">Documentar el Proceso</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_construccion_url}}">Evaluación de Riesgos y Controles</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_construccion_url}}">Evaluación de Eficacia Operativa</button>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                                    Área de Propiedad, Planta y Equipo
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                  <div class="accordion-body">
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_propiedad_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_propiedad_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_propiedad_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_propiedad_url}}">Documentar el Proceso</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_propiedad_url}}">Evaluación de Riesgos y Controles</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_propiedad_url}}">Evaluación de Eficacia Operativa</button>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+                                    Área de Activo Intangible
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                  <div class="accordion-body">
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_diferido_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_diferido_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_diferido_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_diferido_url}}">Documentar el Proceso</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_diferido_url}}">Evaluación de Riesgos y Controles</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_diferido_url}}">Evaluación de Eficacia Operativa</button>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                                    Área de cuentas por Pagar
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                  <div class="accordion-body">
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_pagar_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_pagar_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_pagar_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_pagar_url}}">Documentar el Proceso</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_pagar_url}}">Evaluación de Riesgos y Controles</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_pagar_url}}">Evaluación de Eficacia Operativa</button>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTen" aria-expanded="false" aria-controls="flush-collapseTen">
+                                    Área de prestamos por Pagar
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                  <div class="accordion-body">
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_prestamos_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_prestamos_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_prestamos_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_prestamos_url}}">Documentar el Proceso</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_prestamos_url}}">Evaluación de Riesgos y Controles</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_prestamos_url}}">Evaluación de Eficacia Operativa</button>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+
+                            {% comment %} Patrimonio {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEleven" aria-expanded="false" aria-controls="flush-collapseEleven">
+                                  Área de Patrimonio
+                                </button>
+                              </h2>
+                              <div id="flush-collapseEleven" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_patrimonio_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_patrimonio_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_patrimonio_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_patrimonio_url}}">Documentar el Proceso</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_patrimonio_url}}">Evaluación de Riesgos y Controles</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_patrimonio_url}}">Evaluación de Eficacia Operativa</button>
+                                  
+                                </div>
+                              </div>
+                            </div>
+
+                            {% comment %} Nomina {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
+                                  Área de Nóminas
+                                </button>
+                              </h2>
+                              <div id="flush-collapseTwelve" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_nomina_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_nomina_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_nomina_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_nomina_url}}">Documentar el Proceso</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_nomina_url}}">Evaluación de Riesgos y Controles</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_nomina_url}}">Evaluación de Eficacia Operativa</button>
+                                  
+                                </div>
+                              </div>
+                            </div>
+
+
+                            {% comment %} Impuestos {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThirteen" aria-expanded="false" aria-controls="flush-collapseThirteen">
+                                  Área de Impuestos
+                                </button>
+                              </h2>
+                              <div id="flush-collapseThirteen" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuestionario_evaluacion_impuesto_url}}">Cuestionario de Evaluacion del Control Interno </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_cuentas_impuesto_url}}">Evaluación y Selección de Cuentas Significaticas</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{entendimiento_control_interno_impuesto_url}}">Entendimiento del Control Interno a nivel Proceso y Transacción </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{documentar_proceso_impuesto_url}}">Documentar el Proceso</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluacion_riesgos_impuesto_url}}">Evaluación de Riesgos y Controles</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{evaluar_eficacia_impuesto_url}}">Evaluación de Eficacia Operativa</button>
+                                  
+                                </div>
+                              </div>
+                            </div>
+
                         </div>
                         
                     </td>
