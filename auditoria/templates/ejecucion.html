@@ -1,0 +1,138 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'content' %}
+<div class="row p-4">
+    <h2 class="text-center">Fase 3: Ejecución</h2>
+    <p>
+        <b>Instrucción:</b> Debes hacer Clic para abrir en el nombre del archivo, 
+        para que puedas visualizar y trabajar la plantilla hacerle cambios, guardar, 
+        descargar en Excel o PDF, enviar el archivo por correo y hacer videollamadas. 
+    </p>
+    <div class="col-2">
+        
+        {% comment %} <a href="" id="loadButton">File: cronogramadeactividades.xls</a> {% endcomment %}
+        <table class="table-secondary">
+            <thead>
+                <th><H3>Papel de trabajo</H3></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="accordion accordion.flush" id="acoordionFlushPlanning">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button  class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    Area Caja y Bancos
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                  <div class="accordion-body">
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_caja_bancos_url}}">1. Programa de Auditoría Caja y Bancos</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_caja_bancos_url}}">2. Sumaria Caja y Bancos</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{Arqueo_caja_url}}">3. Arqueo de Caja General</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{corte_cheques_url}}">3.1 Corte de Cheques</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{integracion_caja_chica_url}}">4 Integración del fondo de Caja Chica</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{arqueo_caja_chica_url}}">4.1 Arqueo Caja Chica</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{analitica_caja_chica_url}}">4.2 Analitica de Arqueo de Caja Chica</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{conciliacion_bancaria_url}}">5. Prueba de Conciliaciones Bancaria</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{conciliacion_bancaria_uno_url}}">5.1 Prueba de Conciliaciones Bancaria</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{conciliacion_bancaria_dos_url}}">5.2 Prueba de Conciliaciones Bancaria</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{confirmacion_bancaria_url}}">6. confirmación Bancaria</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{estado_cuenta_url}}">6.1 Estado Cuenta Bancario</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{confirmacion_bancaria_url}}">7. Control de Confirmaciones Bancarias</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{integracion_ingresos_url}}">8. Cédula Integración Ingresos</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{integracion_egresos_url}}">9. Cédula Integración Egresos</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{ingresos_caja_banco_url}}">10. Prueba de Ingresos Caja y Bancos</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{egresos_caja_banco_url}}">11. Prueba de Egresos Caja y Bancos</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_ajuste_url}}">12 Partidas de Ajustes</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_reclasificacion_url}}">13 Partidas de Reclasificación</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_marca_url}}">14. Cédulas de Marcas</button>
+                                  </div>
+                                </div>
+                            </div>
+                          
+
+
+                            {% comment %} cuentas por cobrar {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThirteen" aria-expanded="false" aria-controls="flush-collapseThirteen">
+                                  Área Cuentas por Cobrar
+                                </button>
+                              </h2>
+                              <div id="flush-collapseThirteen" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_cuentas_cobrar_url}}">1 Programa de Auditoría cuentas Por Cobrar </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_cuentas_cobrar_url}}">2 Sumaria Cuentas por Cobrar</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{integracion_clientes_url}}">3 Ingegración de Clientes </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{integracion_deudores_url}}">4 Integración de Deudores diversos</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{circularizacion_clientes_url}}">5 Circularización de Cliente</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{circularizacion_clientes_uno_url}}">5.1 Circularización de Cliente</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{circularizacion_clientes_dos_url}}">5.2 Circularización de Cliente</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{circularizacion_clientes_tres_url}}">5.3 Circularización de Cliente</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{circularizacion_clientes_cuatro_url}}">5.4 Circularización de Cliente</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{circularizacion_clientes_cinco_url}}">5.5 Circularización de Cliente</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{circularizacion_url}}">6 Circularización</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{estadistica_circularizacion_url}}">7 Estadística de Circularización</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{analisis_antiguedad_url}}">8 Análisis de Antiguedad de Saldos</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{prueba_cobros_url}}">9 Prueba de Cobros Posteriores</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{corte_formas_url}}">10 Corte de Formas</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cuentas_incobrables_url}}">11 Cuentas Incobrables</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_ajustes_url}}">12 Partidas de Ajustes</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_reclasificacion_url}}">13 Partidas de Reclasificación</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_reclasificacion_url}}">14 Cedula de Marcas</button>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                            
+
+                        </div>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      {% comment %} <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{horas_hombre_url}}">Horas Hombre en la Fase de Evaluación</button> {% endcomment %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      {% comment %} <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cronograma_actividades_url}}">Cronograma de Actividades</button> {% endcomment %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      {% comment %} <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{seguimiento_plan_url}}">Seguimiento al plan de Auditoría Interna</button> {% endcomment %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+        
+        
+    </div>
+    <div class="col" id="spreadsheetContainer">
+        <iframe sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" src="" width="100%" height="1000"></iframe>
+
+        <a id="directLink" href="" target="_blank">Abrir en nueva pestaña</a>
+
+    </div>
+</div>
+
+<script>
+    var buttons = document.getElementsByClassName('loadButton');
+    var iframe = document.querySelector('#spreadsheetContainer iframe');
+
+    var directLink = document.getElementById('directLink');
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function(){
+            var url = this.getAttribute('data-url');
+            iframe.src = url;
+            directLink.href = url;
+        });
+    }
+</script>
+{% endblock 'content' %}

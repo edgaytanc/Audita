@@ -109,7 +109,60 @@ def planeacion(request):
         'documentar_proceso_impuesto_url':'https://docs.google.com/document/d/1ITCA4fpy0mNiblx3cf_ZcInCEiZbnOJoeVv8wJDs7Y8/edit?usp=sharing',
         'evaluacion_riesgos_impuesto_url':'https://docs.google.com/document/d/1F3e1KMcpZCuvvhcmJJ33EAmLMDLZ3s58S4HFhOXUrwg/edit?usp=sharing',
         'evaluar_eficacia_impuesto_url':'https://docs.google.com/document/d/1QO2jd2aCF6yKcc7vwJQn0VxpwU5o1CJtqT08d-FzLqQ/edit?usp=sharing',
+        # varios
+        'horas_hombre_url':'https://docs.google.com/spreadsheets/d/1xT2zfg73JlgbYFrVtBt4ZywS79ffnGxlPzLYhyMYF5k/edit?usp=sharing',
+        'cronograma_actividades_url':'https://docs.google.com/document/d/18vNAAVmF0EeX8SeAtY38C9VTNoujsCMmoakxwuuw7cc/edit?usp=sharing',
+        'seguimiento_plan_url':'https://docs.google.com/spreadsheets/d/1YRu6d2hNUzhCKPOcERd3dhaKF38TAJjO3ibbdisSjww/edit?usp=sharing',
 
 
     }
     return render(request, 'planeacion.html', context)
+
+
+@login_required
+def ejecucion(request):
+    context = {
+        # Area Caja y bancos
+        'auditoria_caja_bancos_url':'https://docs.google.com/document/d/1dIdzMq2CGUOd8PY2yRZqGYoCZpv_hJcdnP9blH4aGVg/edit?usp=sharing',
+        'sumaria_caja_bancos_url':'https://docs.google.com/spreadsheets/d/16c0bjYSQLCLiRfvElUGzNff6tYoxawH7baIYTulBU2Y/edit?usp=sharing',
+        'Arqueo_caja_url':'https://docs.google.com/spreadsheets/d/11g1163Ol8M4PqwIZPyigst9b-PqjFIgDnr7rZvBVjWg/edit?usp=sharing',
+        'corte_cheques_url':'https://docs.google.com/spreadsheets/d/1RuGqtX-7S-uDFRxlI-lSpy7A_W20JkMfrhwRNGVeYZ4/edit?usp=sharing',
+        'integracion_caja_chica_url':'https://docs.google.com/document/d/1OjOueYjpqKUWUBBjRpzSBJhUDzWP5LtUUyLibDMXpf4/edit?usp=sharing',
+        'arqueo_caja_chica_url':'https://docs.google.com/document/d/12K6yqFeyJjem_P8VzY9wTrAqUIZUo-8h3BPietCahbE/edit?usp=sharing',
+        'analitica_caja_chica_url':'https://docs.google.com/document/d/17F8UxQvzbDv9ZnJHxYxx97zWEO40zI5OviUtKwG7h7A/edit?usp=sharing',
+        'conciliacion_bancaria_url':'https://docs.google.com/document/d/15M2hIZ08pGcleE9UU3ktcaopi0jzdw5_6IbWBmi2wSY/edit?usp=sharing',
+        'conciliacion_bancaria_uno_url':'https://docs.google.com/document/d/1elZri73q_j1463AsfZ_qFtmCfN4r_vfmgBb9uK6Ro6A/edit?usp=sharing',
+        'conciliacion_bancaria_dos_url':'https://docs.google.com/document/d/1WpLdRwpINfOb_rpd8WIWrWjwYtLD7iUZkhv6rMunVA4/edit?usp=sharing',
+        'confirmacion_bancaria_url':'https://docs.google.com/document/d/1S1wYjaBZtPD_fMq0vO2LVI894ksAAcDC4WnRrSGunKM/edit?usp=sharing',
+        'estado_cuenta_url':'https://docs.google.com/document/d/17MPfJRgYFXY_lhSjOrv-OgqdS9JsYP6Lr9J23Jp7Nzw/edit?usp=sharing',
+        'confirmacion_bancaria_url':'https://docs.google.com/spreadsheets/d/18XL9WFc8rDn_yJN1PCb4msy4VVuXkp8oQrncztWD9Dc/edit?usp=sharing',
+        'integracion_ingresos_url':'https://docs.google.com/spreadsheets/d/1gxla_8N999y3OF2J9fyvqYpCMxmJDWAKspRKhWZJqmI/edit?usp=sharing',
+        'integracion_egresos_url':'https://docs.google.com/spreadsheets/d/1GU-bL0Kfu8Pd99_MfrttvaGXBx9ZCV3qtkDXpDBXIZc/edit?usp=sharing',
+        'ingresos_caja_banco_url':'https://docs.google.com/spreadsheets/d/14UxQJD7CrZ0nYXh41qD9FdlGlddsnWJPy9Woh00TzAc/edit?usp=sharing',
+        'egresos_caja_banco_url':'https://docs.google.com/spreadsheets/d/12E0x4FHsS2Ap_eoa875HeFboI_1-Y7N3pkEHNaaKBNk/edit?usp=sharing',
+        'partida_ajuste_url':'https://docs.google.com/document/d/1iVTNTwHPF2lwc2raikeMJmhbcWjWg6osO_acMak4lIM/edit?usp=sharing',
+        'partida_reclasificacion_url':'https://docs.google.com/document/d/1NaoQcoFsYJ6P1dmKAYgvU4roEDFBS4pcdj--j7C49mM/edit?usp=sharing',
+        'cedula_marca_url':'https://docs.google.com/document/d/1FZ3enHMTooH9QzSu9_bdyVVcfLhkcrQnjuV2QuiqaAk/edit?usp=sharing',
+        # Area Cuentas por cobrar
+        'auditoria_cuentas_cobrar_url':'https://docs.google.com/document/d/1prsgnJ1cqSi2LvfK8oilgfqStqSCb9R3_IMahaRKXHs/edit?usp=sharing',
+        'sumaria_cuentas_cobrar_url':'https://docs.google.com/spreadsheets/d/11UzADx261fFhJAPE5JqTbZGrrCcl_Br5HcOW9wKkyzY/edit?usp=sharing',
+        'integracion_clientes_url':'https://docs.google.com/document/d/1vaC3lvyMrscqR_Zs4tC-X8K9OkcbMi1hgjuQLXi4O9Y/edit?usp=sharing',
+        'integracion_deudores_url':'https://docs.google.com/document/d/1F9gFhjCn0TX96qLsJJSTPaZ9xPDjx1uYf3knhcAXs00/edit?usp=sharing',
+        'circularizacion_clientes_url':'https://docs.google.com/document/d/15Itoqh4CQvJ_143PEEB0wa5WOspfLGPmGhjouBAWKeM/edit?usp=sharing',
+        'circularizacion_clientes_uno_url':'https://docs.google.com/document/d/1rcrUB8Kdv__eB26VSskrHRIPfEU-RNGz-Bkn0YlbtmE/edit?usp=sharing',
+        'circularizacion_clientes_dos_url':'https://docs.google.com/document/d/1eTbnSn-nSkbaJ41WgUGRewxe_xsQEhAxtVN0oIJGym0/edit?usp=sharing',
+        'circularizacion_clientes_tres_url':'https://docs.google.com/document/d/1fnmLshZwb6Mv-qz5tYAojMMnZN8Hr5RqtNlYAAi9NmM/edit?usp=sharing',
+        'circularizacion_clientes_cuatro_url':'https://docs.google.com/document/d/1GvWHIhMYqS9do5SxscalFyAcX9Sh3eBIwyaL5rcv4Lk/edit?usp=sharing',
+        'circularizacion_clientes_cinco_url':'https://docs.google.com/document/d/1Ti1OM3eSFv3qHD_nmIWPilYhYrZsR_grHv80xd_sQuU/edit?usp=sharing',
+        'circularizacion_url':'https://docs.google.com/document/d/1OuJHZBZRGZIRkV4dcPKuqbDI1pkKzYAT2jtF08wxsTA/edit?usp=sharing',
+        'estadistica_circularizacion_url':'https://docs.google.com/document/d/1k5UDGGHtsBLl7cB9d5hjN9_sepWxX_0AzL6pZvftXws/edit?usp=sharing',
+        'analisis_antiguedad_url':'https://docs.google.com/spreadsheets/d/1rhoupY4bsI_VZn2r6lnJkJzbRUuLEH8ES0GwYKd3JVs/edit?usp=sharing',
+        'prueba_cobros_url':'https://docs.google.com/spreadsheets/d/1hOBIqieEhRyw9_1hadQ0W0NaJ3AZmSz3RtODhM5J3Ks/edit?usp=sharing',
+        'corte_formas_url':'https://docs.google.com/document/d/1wZEkVwh1Ev92bjbKkg4aFGIsq1FGWzOJQa7geQyydNc/edit?usp=sharing',
+        'cuentas_incobrables_url':'https://docs.google.com/document/d/1NlayQCa06EWyNOzaFdwAha8C2hOMb5x-DzOakrXSV4w/edit?usp=sharing',
+        'partida_ajustes_url':'https://docs.google.com/document/d/1wsDusd_ZKpGlZRJ6tMPucax8VUWDLePouuWu1H-BafE/edit?usp=sharing',
+        'partida_reclasificacion_url':'https://docs.google.com/document/d/1uZZKVzIAx_4EzwCzEQTv9IdUhuUr4MFwz8nDdBoGE0s/edit?usp=sharing',
+        'cedula_reclasificacion_url':'https://docs.google.com/document/d/1v3mPdUsyM7fY2pfrJ_E6kSOkjoHb8OuODhJtOKRBBg4/edit?usp=sharing',
+        
+    }
+    return render(request, 'ejecucion.html', context)
