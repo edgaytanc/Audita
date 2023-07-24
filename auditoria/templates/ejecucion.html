@@ -16,6 +16,22 @@
                 <th><H3>Papel de trabajo</H3></th>
             </thead>
             <tbody>
+              <tr>
+                <td>
+                  <div class="pe-2">
+                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{centralizadora_url}}">Centralizadora</button>
+                  </div>
+                  
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  <div class="pe-2">
+                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{centralizadora_activo_url}}">Centralizadora Activos</button>
+                  </div>
+                  
+                </td>
+            </tr>
                 <tr>
                     <td>
                         <div class="accordion accordion.flush" id="acoordionFlushPlanning">
@@ -56,11 +72,11 @@
                             {% comment %} cuentas por cobrar {% endcomment %}
                             <div class="accordion-item">
                               <h2 class="accordion-header">
-                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThirteen" aria-expanded="false" aria-controls="flush-collapseThirteen">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                                   Área Cuentas por Cobrar
                                 </button>
                               </h2>
-                              <div id="flush-collapseThirteen" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                              <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
                                 <div class="accordion-body">
                                   <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_cuentas_cobrar_url}}">1 Programa de Auditoría cuentas Por Cobrar </button>
                                   <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_cuentas_cobrar_url}}">2 Sumaria Cuentas por Cobrar</button>
@@ -87,24 +103,215 @@
                             </div>
                             
 
+                            {% comment %} Inversiones {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                  Área Inversiones
+                                </button>
+                              </h2>
+                              <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_inversiones_url}}">1 Programa de Auditoría Inversiones </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_inversiones_url}}">2 Sumaria Inversiones</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_integracion_url}}">3 Cedula Integración </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{prueba_inversiones_url}}">4 Prueba de Inversiones</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_ajustes_inversiones_url}}">5 Partida de Ajustes</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_reclasificacion_inversiones_url}}">6 Partida de Reclasificación</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_marcas_inversiones_url}}">7 Cedula de Marcas</button>
+                                  
+                                  
+                                </div>
+                              </div>
+                            </div>
+
+                            {% comment %} Construccion {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                  Área Construcciones en Proceso
+                                </button>
+                              </h2>
+                              <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_construccion_url}}">1 Programa de Auditoría Construcción en Proceso </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_construccion_url}}">2 Sumaria Construcción en Proceso</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_integracion_construccion_url}}">3 Cedula Integración </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{revision_proyecto_url}}">4 Revisión Expedientes Proyecto</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_guatecompras_url}}">5 Cédula Revisión Guatecompras</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{inventario_fisico_url}}">6 Inventario Fisico Selectivo</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_ajustes_construccion_url}}">7 Partidas de Ajustes</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_reclasificacion_construccion_url}}">8 Partidas de Reclasificación</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_marcas_construccion_url}}">9 Marcas</button>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            {% comment %} Activos Fijos {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                  Área Activos Fijos
+                                </button>
+                              </h2>
+                              <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_activo_fijo_url}}">1 Programa de Auditoría Activos Fijos </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_activo_fijo_url}}">2 Sumaria Activos Fijos</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_integracion_activo_fijo_url}}">3 Cedula Integración </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{adiciones_edificios_url}}">4 Prueba de Adiciones Edificios</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{adiciones_vehiculos_url}}">5 Prueba de Adiciones Vehículos</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{analitica_equipo_computo_url}}">6 Analítica Equipo de Computo</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{prueba_retiros_url}}">7 Prueba Retiros</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{prueba_traslados_url}}">8 Prueba de Traslados</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{calculo_depreciaciones_url}}">9 Calculo Depreciaciones</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_ajustes_activo_fijo_url}}">10 Partidas de Ajustes</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_reclasificacion_activo_fijo_url}}">11 Partidas de Reclasificación</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_marca_activo_fijo_url}}">12 Marcas</button>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            {% comment %} Activos Fijos {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                                  Área Activos Intangibles
+                                </button>
+                              </h2>
+                              <div id="flush-collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_activo_intangible_url}}">1 Programa de Auditoría Activos Intangibles </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_activo_intangible_url}}">2 Sumaria Activos Intangibles</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_integracion_activo_intangible_url}}">3 Cedula Integración </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_muestra_url}}">4 Cédula Muestra Revisión</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{analisis_url}}">5 Análisis</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{solicitud_confirmacion_url}}">6 Solicitud de Confirmación</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{confirmacion_seguros_url}}">7 Confirmación Seguros</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{revision_seguros_url}}">8 Revisión de seguros Pagados</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_ajustes_activo_intangible_url}}">9 Partidas de Ajustes</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_reclasificacion_activo_intangible_url}}">10 Partidas de Reclasificación</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_marca_activo_intangible_url}}">11 Cédula de Maracas</button>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="pe-2">
+                              <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{centralizadora_pasivo_url}}">Centralizadora Pasivos</button>
+                            </div>
+
+                            {% comment %} Cuentas por Pagar {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                                  Área Cuentas por Pagar
+                                </button>
+                              </h2>
+                              <div id="flush-collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_cuentas_pagar_url}}">1 Programa de Auditoría Cuentas por Pagar </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_caja_bancos_url}}">2 Sumaria Caja y Bancos</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{integracion_proveedores_url}}">3 Integración de Proveedores diversos </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_muestra_cuentas_pagar_url}}">4 Cédula Muestra Revisión</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{calculo_prestaciones_laborales_url}}">5 Calculo de Prestaciones Laborales</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{confirmaciones_cuentas_pagar_url}}">6 Confirmaciones de Cuentas por Pagar</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{confirmacionesUno_cuentas_pagar_url}}">6.1 Confirmaciones de Cuentas por Pagar</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{confirmacionesDos_cuentas_pagar_url}}">6.2 Confirmaciones de Cuentas por Pagar</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{confirmacionesTres_cuentas_pagar_url}}">6.3 Confirmaciones de Cuentas por Pagar</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{circulacion_pasivos_url}}">7 Circularización de Pasivos</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{estadistica_proveedores_url}}">8 Estadistica de Proveedores</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{prueba_pagos_posteriores_url}}">9 Prueba de pagos posteriores</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{confirmacion_abogaods_url}}">10 Confirmación de Abogados</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_ajustes_cuentas_pagar_url}}">11 Partidas de Ajustes</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_reclasificacion_cuentas_pagar_url}}">12 Partidas de reclasificación</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_marca_cuentas_pagar_url}}">13 Cedulas de Marcas</button>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            {% comment %} Pasivo a largo plazo {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+                                  Área Pasivo Largo Plazo
+                                </button>
+                              </h2>
+                              <div id="flush-collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_pasivo_largo_url}}">1 Programa de Auditoría Pasivo Largo Plazo </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_pasico_largo_url}}">2 Sumaria Pasivo Largo Plazo</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{analisis_prestamos_pagar_url}}">3 Análisis de Prestamos por Pagar </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{confirmacion_prestamos_url}}">4 Confirmación de Prestamos</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_ajustes_pasivo_largo_url}}">5 Partidas de Ajustes</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_reclasificacion_pasivo_largo_url}}">6 Partidas de Reclasificación</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_marca_pasivo_largo_url}}">7 Cédula de Marcas</button>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            {% comment %} Patrimonio {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                                  Área Patrimonio
+                                </button>
+                              </h2>
+                              <div id="flush-collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_patrimonio_url}}">1 Programa de Auditoría Patrimonio </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_patrimonio_url}}">2 Sumaria Patrimonio</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{integracion_patrimonio_url}}">3 Integración de Patrimonio </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{integracion_dividendos_url}}">4 Integración de Dividendos</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_ajustes_patrimonio_url}}">5 Partidas de Ajustes</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_reclasificacion_patrimonio_url}}">6 Partidas de Reclasificación</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_marca_patrimonio_url}}">7 Cédula de Marcas</button>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            {% comment %} Estado de Resultados {% endcomment %}
+                            <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                <button class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTen" aria-expanded="false" aria-controls="flush-collapseTen">
+                                  Área Estado de Resultados
+                                </button>
+                              </h2>
+                              <div id="flush-collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                <div class="accordion-body">
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{auditoria_ingreso_gasto_url}}">1 Programa de Auditoría Ingresos y Gastos </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{sumaria_resultados_url}}">2 Sumaria Esultados</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{prueba_planilla_url}}">3 Prueba de Planilla </button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{verificacion_impuestos_url}}">4 Verificacion de Declaraciones de Impuestos</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{revision_libros_url}}">5 Revisión de Libros y Formas</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{revision_informacion_url}}">6 Revisión Información Fiscal de la Entidad</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_ajustes_ingreso_gasto_url}}">7 Partidas de Ajustes</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{partida_reclasificacion_ingreso_gasto_url}}">8 Partidas de Reclasificación</button>
+                                  <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cedula_marca_ingreso_gasto_url}}">9 Cedula de Marcas</button>
+                                </div>
+                              </div>
+                            </div>
+
                         </div>
                         
                     </td>
                 </tr>
+                
+                
                 <tr>
-                    <td>
-                      {% comment %} <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{horas_hombre_url}}">Horas Hombre en la Fase de Evaluación</button> {% endcomment %}
-                    </td>
+                  <td>
+                    <button class="loadButton btn btn-primary" style="width: 100%; font-size: 12px;" data-url="{{horas_hombre_ejecucion_url}}">Horas Hombre Fase Ejecución</button>
+                  </td>
                 </tr>
                 <tr>
-                    <td>
-                      {% comment %} <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{cronograma_actividades_url}}">Cronograma de Actividades</button> {% endcomment %}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                      {% comment %} <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{seguimiento_plan_url}}">Seguimiento al plan de Auditoría Interna</button> {% endcomment %}
-                    </td>
+                  <td>
+                    {% comment %} <button class="loadButton btn btn-primary" style="width: 100%; font-size: 12px;" data-url="{{otras_cedulas_url}}">Otras Cedulas</button> {% endcomment %}
+                    <a href="https://drive.google.com/drive/folders/1-cVAbTyjH7m2U22KhXQmW9Ag-YznVg1C?usp=sharing" class="loadButton btn btn-primary" style="width: 100%; font-size: 12px;" target="_blank" data-url="{{ none}}">Otras Cedulas</a>
+                  </td>
                 </tr>
             </tbody>
         </table>
