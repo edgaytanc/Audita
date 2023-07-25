@@ -1,5 +1,16 @@
+import os
+import json
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+
+# Obtén la ruta absoluta del directorio donde se encuentra este script
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+# Construye la ruta al archivo urls.json
+urls_file_path = os.path.join(dir_path, 'urls.json')
+
+with open(urls_file_path) as f:
+    urls = json.load(f)
 
 @login_required
 def directrices(request):
@@ -258,3 +269,18 @@ def ejecucion(request):
         'otras_cedulas_url':'https://drive.google.com/drive/folders/1-cVAbTyjH7m2U22KhXQmW9Ag-YznVg1C?usp=sharing',
     }
     return render(request, 'ejecucion.html', context)
+
+@login_required
+def informes(request):
+    context = urls["informes"]
+    return render(request, 'informes.html', context)
+
+@login_required
+def seguimiento(request):
+    context = urls["seguimiento"]
+    return render(request, 'seguimiento.html', context)
+
+@login_required
+def calidad(request):
+    context = urls["calidad"]
+    return render(request,'calidad.html', context)

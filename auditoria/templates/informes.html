@@ -1,0 +1,128 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'content' %}
+<div class="row p-4">
+    <h2 class="text-center">Fase 5: Inferme</h2>
+    <p>
+        <b>Instrucción:</b> Debes hacer Clic para abrir en el nombre del archivo, 
+        para que puedas visualizar y trabajar la plantilla hacerle cambios, guardar, 
+        descargar en Excel o PDF, enviar el archivo por correo y hacer videollamadas. 
+    </p>
+    <div class="col-2">
+        
+        {% comment %} <a href="" id="loadButton">File: cronogramadeactividades.xls</a> {% endcomment %}
+        <table class="table-secondary">
+            <thead>
+                <th><H3>Papel de trabajo</H3></th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="pe-2">
+                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{informe_especifico_tesoreria_url}}">1 Informe Específico por Área Tesoreria</button>
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  <div class="pe-2">
+                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{informe_especifico_inventarios_url}}">2 informe Específico por Área Inventarios</button>
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  <div class="pe-2">
+                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{informe_especifico_compras_url}}">3 Informe Específico por Área Compras</button>
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  <div class="pe-2">
+                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{informe_anual_auditoria_interna_url}}">4 Informe Anual de Auditoria Interna</button>
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  <div class="pe-2">
+                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{informe_auditoria_financiera_url}}">5 Informe de Auditoria Financiera</button>
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                  <div class="pe-2">
+                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{hallazgos_recomendaciones_url}}">6 Hallazgos y Recomendaciones</button>
+                  </div>
+                </td>
+            </tr>
+                <tr>
+                    <td>
+                        <div class="accordion accordion.flush" id="acoordionFlushPlanning">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                  <button  class="accordion-button collapsed font-btn" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    Dictamenes
+                                  </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushPlanning">
+                                  <div class="accordion-body">
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{dictamen_auditoria_limpia_url}}">1. Dictamen de Auditoría con una Opinión Limpia</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{dictamen_auditoria_salvedad_url}}">2. Dictamen de Auditoría con salvedad</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{dictamen_cuentas_anuales_url}}">3. Dictamen sobre cuentas anuales consolidadas</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{dictamen_auditoria_salvedad_material_url}}">4. Dictamen de Auditoría con Salvedad</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{dictamen_auditoria_especiales_url}}">5. Dictamen de Auditoría con Disposiciones especiales</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{dictamen_auditoria_estimancion_url}}">6. Dictamen de Auditoría por no Determinar Cuentas por Cobrar</button>
+                                    <button class="loadButton btn btn-primary m-2" style="width: 100%; font-size: 12px;" data-url="{{parrafos_dictamenes_url}}">7. Parrafos Dictamenes</button>
+                                  </div>
+                                </div>
+                            </div>  
+                        </div>
+                        
+                    </td>
+                </tr>
+                
+                
+                <tr>
+                  <td>
+                    <button class="loadButton btn btn-primary" style="width: 100%; font-size: 12px;" data-url="{{horas_hombre_resultados_url}}">8 Horas Hombre Fase Ejecución</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    {% comment %} <button class="loadButton btn btn-primary" style="width: 100%; font-size: 12px;" data-url="{{otras_cedulas_url}}">Otras Cedulas</button> {% endcomment %}
+                    {% comment %} <a href="https://drive.google.com/drive/folders/1-cVAbTyjH7m2U22KhXQmW9Ag-YznVg1C?usp=sharing" class="loadButton btn btn-primary" style="width: 100%; font-size: 12px;" target="_blank" data-url="{{ none}}">Otras Cedulas</a> {% endcomment %}
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+        
+        
+    </div>
+    <div class="col" id="spreadsheetContainer">
+        <iframe sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" src="" width="100%" height="1000"></iframe>
+
+        <a id="directLink" href="" target="_blank">Abrir en nueva pestaña</a>
+
+    </div>
+</div>
+
+<script>
+    var buttons = document.getElementsByClassName('loadButton');
+    var iframe = document.querySelector('#spreadsheetContainer iframe');
+
+    var directLink = document.getElementById('directLink');
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function(){
+            var url = this.getAttribute('data-url');
+            iframe.src = url;
+            directLink.href = url;
+        });
+    }
+</script>
+{% endblock 'content' %}
