@@ -7,11 +7,11 @@ from reportlab.lib.units import cm
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import *
 from reportlab.lib import colors
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse,FileResponse
 from .forms import ContactoForm, EntidadFrom, AuditorSupervisorForm, NotificacionForm
-from proyecto.models import Contacto, AuditorSupervisor
+from proyecto.models import Contacto, AuditorSupervisor, Entidad
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
@@ -129,8 +129,9 @@ def imprimir_contactos(request):
 
     return response
 
+# TODAS LAS FUNCIONES RELACIONADAS CON ENTIDAD
 #ingresa datos de la entidad a Auditar
-def Entidad(request):
+def entidad(request):
     entidad_form = EntidadFrom()
 
     if request.method == 'POST':
@@ -143,6 +144,165 @@ def Entidad(request):
             #se genera un error
             return redirect(reverse('entidad')+'?error')
     return render(request, 'proyecto/entidad.html',{'form':entidad_form})
+
+
+# Muestra la lista de entidades creadas
+def entidad_list(request):
+    entidades = Entidad.objects.all()
+    return render(request, 'proyecto/entidad_list.html',{'entidades': entidades})
+
+def entidad_detail(request, pk):
+    entidad = get_object_or_404(Entidad,pk=pk)
+    return render(request, 'proyecto/entidad_detail.html', {'entidad': entidad})
+
+def entidad_new(request):
+    if request.method == "POST":
+        form = EntidadFrom(request.POST)
+        if form.is_valid():
+            entidad = form.save()
+            return redirect('entidad_detail', pk=entidad.pk)
+    else:
+        form = EntidadFrom()
+    return render(request, 'proyecto/entidad_edit.html', {'form': form})
+
+# edita la entidad seleccionada
+def entidad_edit(request, pk):
+    entidad = get_object_or_404(Entidad, pk=pk)
+    if request.method == "POST":
+        form = EntidadFrom(request.POST, instance=entidad)
+        if form.is_valid():
+            entidad = form.save()
+            return redirect('entidad_list')
+    else:
+        form = EntidadFrom(instance=entidad)
+    return render(request, 'proyecto/entidad_edit.html', {'form': form})
+
+def entidad_delete(request, pk):
+    entidad = get_object_or_404(Entidad, pk=pk)
+    entidad.delete()
+    return redirect('entidad_list')
+
+# genera el reporte en pdf de la entidad seleccionada
+@login_required
+def entidad_pdf(request, pk):
+    # Obtiene la entidad por su pk
+    entidad = get_object_or_404(Entidad,pk=pk)
+
+    # Crea un objeto HttpResponse y define el tipo de contenido a pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="entidad_{entidad.nombre}.pdf"'
+
+    # Crea un objeto BytesIO para guardar el PDF
+    buffer = BytesIO()
+
+    # Crea un objeto Canvas y dibuja en él
+    p = canvas.Canvas(response, pagesize=A4)
+
+    fecha = datetime.now()
+    hoy = fecha.strftime('%d/%m/%y')
+
+    # Header
+    p.setLineWidth(.3)
+    p.setFont('Helvetica', 22)
+    p.drawString(30,750,'Audita')
+
+    p.setFont('Helvetica',12)
+    p.drawString(30,735,'Reporte')
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(480,750, hoy)
+    p.line(460,747,560,747)
+
+    p.setFont('Helvetica',12)
+
+    # Aquí puedes dibujar lo que quieras en el PDF. Este es solo un ejemplo.
+    
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 700, "Nombre: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 700, f"{entidad.nombre}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 685, "Direccion: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 685, f"{entidad.direccion}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 670, "Ciudad: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 670, f"{entidad.ciudad}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 655, "Pais: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 655, f"{entidad.pais}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 640, "Nit: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 640, f"{entidad.nit}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 625, "Seguro Social: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 625, f"{entidad.seguroSocial}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 610, "Representante: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 610, f"{entidad.representante}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 595, "Contacto: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 595, f"{entidad.contacto}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 580, "Email: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 580, f"{entidad.email}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 565, "Telefono: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 565, f"{entidad.telefono}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 550, "WhatSapp: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 550, f"{entidad.whatsapp}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 535, "Sitio Web: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 535, f"{entidad.sitio}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 520, "Actividad Economica: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 520, f"{entidad.actividadE}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 505, "Actividad de Servicio: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 505, f"{entidad.actividadS}")
+
+    p.setFont('Helvetica-Bold',12)
+    p.drawString(30, 490, "Norma Contable: ")
+    p.setFont('Helvetica',12)
+    p.drawString(175, 490, f"{entidad.norma}")
+
+    
+    # Cierra el objeto PDF
+    p.showPage()
+    p.save()
+
+    return response
+
+
+
+
+
 
 @login_required
 @entidad_requerida

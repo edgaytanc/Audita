@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block 'content' %}
+
+<div class="p-5">
+  <h2>Lista de Entidades</h2>
+  <br>
+  <a href="{% url 'entidad_nuevo' %}" class="btn btn-primary">Crear nueva Entidad</a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre de la Entidad</th>
+        <th>Direccion</th>
+        <th>Ciudad</th>
+        <th>Pais</th>
+        <th>Representante</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entidad in entidades %}
+        <tr>
+          <td>{{ entidad.nombre }}</td>
+          <td>{{entidad.direccion}}</td>
+          <td>{{entidad.ciudad}}</td>
+          <td>{{entidad.pais}}</td>
+          <td>{{entidad.representante}}</td>
+          <td>
+            <a href="{% url 'entidad_detail' pk=entidad.pk %}" class="btn btn-info">Detalle</a>
+            <a href="{% url 'entidad_edit' pk=entidad.pk %}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'entidad_delete' pk=entidad.pk %}" class="btn btn-danger">Eliminar</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td>No hay entidades.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+
+{% endblock 'content' %}

@@ -1,0 +1,44 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block 'content' %}
+
+<div class="row p-5">
+  <div class="card">
+    <div class="card-header">
+      <h2>Detalles de la Entidad</h2>
+    </div>
+    <div class="card-body row">
+      <div class="col-md-6 p-5">
+        <p><b>Nombre:</b> {{ entidad.nombre }}</p>
+        <p><b>Direccion:</b> {{ entidad.direccion }}</p>
+        <p><b>Ciudad:</b> {{ entidad.ciudad }}</p>
+        <p><b>Pais:</b> {{ entidad.pais }}</p>
+        <p><b>Nit:</b> {{ entidad.nit }}</p>
+        <p><b>Seguro Social:</b> {{ entidad.seguroSocial }}</p>
+        <p><b>Representante:</b> {{ entidad.representante }}</p>
+        <p><b>Contacto:</b> {{ entidad.contacto }}</p>
+      </div>
+      <div class="col-md-6 p-5">
+        <p><b>Email:</b> {{ entidad.email }}</p>
+        <p><b>Telefono:</b> {{ entidad.telefono }}</p>
+        <p><b>Whatsapp:</b> {{ entidad.whatsapp }}</p>
+        <p><b>Sitio Web:</b> {{ entidad.sitio }}</p>
+        <p><b>Actividad Economica:</b> {{ entidad.actividadE }}</p>
+        <p><b>Actividad de Servicio:</b> {{ entidad.actividadS }}</p>
+        <p><b>Norma Contable:</b> {{ entidad.norma }}</p>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="{% url 'entidad_pdf' pk=entidad.pk %}" class="btn btn-primary">Generar Reporte</a>
+    </div>
+  </div>
+  
+  
+</div>
+  
+  
+  
+  
+  
+{% endblock 'content' %}
