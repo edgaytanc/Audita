@@ -14,6 +14,8 @@ from .forms import ContactoForm, EntidadFrom, AuditorSupervisorForm, Notificacio
 from proyecto.models import Contacto, AuditorSupervisor, Entidad
 from datetime import datetime
 
+from django.core.mail import send_mail
+
 from django.contrib.auth.decorators import login_required
 from herramientas.decorators import entidad_requerida
 
@@ -458,6 +460,7 @@ def imprimirColaborador(request):
 
     return response
 
+# maneja las notificaciones del sistema por medio de correo electronico
 @login_required
 @entidad_requerida
 def Notificacion(request):
@@ -466,6 +469,27 @@ def Notificacion(request):
     if request.method == 'POST':
         notificacion_form = NotificacionForm(data=request.POST)
         if notificacion_form.is_valid():
+            # Se obtiene la direccion de correo y el nombre del usuario notificado
+            email_destino = notificacion_form.instance.nombre_notificado.email
+            nombre_destino = notificacion_form.instance.nombre_notificado.first_name
+
+            # Estructura del cuerpo del mensaje
+            mensaje = (
+                f"Estimado {nombre_destino}.\n\n"
+                f"Fecha: {notificacion_form.instance.fecha_notificacion}\n"
+                f"Entidad:{notificacion_form.instance.entidad.nombre}\n\n"
+                f"{notificacion_form.instance.nota}\n\n"
+                f"Atentamente,\n\n{notificacion_form.instance.nombre_notifica} "
+            )
+
+            # enviar correo electrionico
+            send_mail('Notificación de Audita',
+                      mensaje,
+                      'noreply@audita.com',
+                      [email_destino],
+                      fail_silently=False,
+                      )
+            # Guarda notificacion en base de datos
             notificacion_form.save()
             return redirect(reverse('notificacion')+'?ok')
         else:
