@@ -1,4 +1,5 @@
 import os
+import json
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .forms import BalanceGeneralForm
@@ -10,6 +11,15 @@ import pandas as pd
 import io
 from django.contrib.auth.decorators import login_required
 from herramientas.decorators import entidad_requerida
+
+# Obten la ruta absolua del directorio donde se encuetra este script
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+# Construye la ruta al archivo urls.json
+urls_file_path =  os.path.join(dir_path, 'urls.json')
+
+with open(urls_file_path) as f:
+    urls = json.load(f)
 
 
 @login_required
@@ -80,3 +90,9 @@ def analisis_vertical(request):
             return response
 
     return render(request, 'importacion/analisis_vertical.html')
+
+@login_required
+@entidad_requerida
+def ratio(request):
+    context = urls["ratios"]
+    return render(request, 'ratio.html', context)

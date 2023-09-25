@@ -26,6 +26,7 @@ urlpatterns = [
     path('importacion/', include('importacion.urls')),
     path('auditoria/', include('auditoria.urls')),
     path('archivo/', include('archivo.urls')),
+    path('dashboard/', include('dashboard.urls')),
     
     # path('activate/<uidb64>/<token>', views.activate, name='activate'),
 

@@ -21,4 +21,6 @@ urlpatterns = [
     path('actividades_excel/', views.some_view, name='actividades_excel'), #genera un archivo excel para descargar
     path('cronograma/', views.cronograma, name='cronograma'),
     path('resumen_tiempo/', views.resumen_tiempo, name='resumen_tiempo'),
+    path('marcas_auditoria/', views.marcas, name='marcas_auditoria'),
+    path('tipo_monedas/', views.monedas, name='tipo_monedas'),
 ]

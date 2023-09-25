@@ -23,8 +23,16 @@ from .models import Actividad
 import os
 from openpyxl.styles import Font, PatternFill, Color, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
+import json
 
+# Obten la ruta absolua del directorio donde se encuetra este script
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
+# Construye la ruta al archivo urls.json
+urls_file_path =  os.path.join(dir_path, 'urls.json')
+
+with open(urls_file_path) as f:
+    urls = json.load(f)
 
 
 @login_required
@@ -368,3 +376,15 @@ def resumen_tiempo(request):
         'estado_papeles_url': 'https://docs.google.com/spreadsheets/d/1fnNZ5ltcC1xELHq2n2-ZvDaJL2k1kd2i5Vun46EODc0/edit',
     }
     return render(request, 'resumen_tiempo.html', context)
+
+@login_required
+@entidad_requerida
+def marcas(request):
+    context = urls["marcas"]
+    return render(request, 'marcas.html', context)
+
+@login_required
+@entidad_requerida
+def monedas(request):
+    context = urls["monedas"]
+    return render(request, 'monedas.html', context)

@@ -1,0 +1,51 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+
+{% block 'content' %}
+
+    {% comment %} <h1 class="text-center">Admin Dashboard</h1> {% endcomment %}
+    
+    <div class="row d-flex" style="height: 85vh;" >
+        <!-- Columna de controles (tamaño 4) -->
+        <div class="col-md-2 bg-primary h-100" >
+            <div class="row p-3 d-flex align-items-center justify-content-center">
+                <h5 class="text-white"><i class="fas fa-fw fa-tachometer-alt mr-2"></i> Controles</h5>
+                <hr class="sidebar-divider border-light w-100 mt-2">
+            </div>
+            <div class="row p-3 d-flex align-items-center justify-content-center">
+                <a href="{% url 'list_users' %}" class="text-decoration-none">
+                    <h6 class="text-white fw-normal" ><i class="fas fa-solid fa-user mr-2"></i> Usuarios</h6>
+                </a>
+                <hr class="sidebar-divider border-light w-100 mt-2">
+            </div>
+            <div class="row p-3 d-flex align-items-center justify-content-center">
+                <a href="#" class="text-decoration-none">
+                    <h6 class="text-white fw-normal" ><i class="fas fa-solid fa-users mr-2"></i> Entidades</h6>
+                </a>
+                <hr class="sidebar-divider border-light w-100 mt-2">
+            </div>
+            <div class="row p-3 d-flex align-items-center justify-content-center">
+                <a href="#" class="text-decoration-none">
+                    <h6 class="text-white fw-normal" ><i class="fas fa-solid fa-file-pdf mr-2"></i> Reportes</h6>
+                </a>
+                <hr class="sidebar-divider border-light w-100 mt-2">
+            </div>
+            
+            
+            
+            
+            
+        </div>
+
+        <!-- Columna principal (tamaño 8) -->
+        <div class="col-md-10 h-100">
+            {% comment %} <h5>Contenido Principal</h5> {% endcomment %}
+            {% block dashboard_content%}
+            {%endblock%}
+        </div>
+    </div>
+
+
+{% endblock 'content' %}
+

@@ -1,0 +1,23 @@
+{% extends 'dashboard/admin_dashboard.html' %}
+{% load crispy_forms_tags %}
+{% block dashboard_content %}
+<div class="container p-4">
+
+    <div class="card">
+        <div class="card-head p-3">
+            <h4>Editar Usuario</h4>
+        </div>
+        <div class="card-body p-3">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}  <!-- Esto renderizará el formulario como una serie de párrafos. Puedes usar form.as_table o form.as_ul si prefieres. -->
+        
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </form>
+        </div>
+    </div>
+
+    
+    
+</div>
+{% endblock %}

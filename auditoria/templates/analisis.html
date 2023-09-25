@@ -1,0 +1,98 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block 'content' %}
+<div class="row p-4">
+    <h2 class="text-center">Fase 4: Analisis</h2>
+    <p>
+        <b>Instrucción:</b> Debes hacer Clic para abrir en el nombre del archivo, 
+        para que puedas visualizar y trabajar la plantilla hacerle cambios, guardar, 
+        descargar en Excel o PDF, enviar el archivo por correo y hacer videollamadas. 
+    </p>
+    <div class="col-2">
+        
+        {% comment %} <a href="" id="loadButton">File: cronogramadeactividades.xls</a> {% endcomment %}
+        <table class="table-secondary">
+            <thead>
+                <th><H3>Papel de trabajo</H3></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{datos_duplicados_url}}">Datos Duplicados</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{datos_faltantes_url}}">Datos Faltantes</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{analisis_sobrevaloracion_url}}">Analisis Sobrevaloración Obras</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{analisis_hechos_posteriores_url}}">Analisis de Hechos Posteriores</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{comparacion_salarios_url}}">Comparación de Salarios</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{comparacion_salarios_depositos_url}}">Comparación de salarios Depositos</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{comparativa_retenciones_pagos_url}}">Comparativa Retenciones con Pagos</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{pagos_inusuales_url}}">Pagos Inusuales</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{comparativa_impuestos_pagos_url}}">Comparativa Impuestos con Pagos</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="loadButton btn btn-primary m-2 font-papel" style="width: 100%;" data-url="{{analisis_ingresos_url}}">Analisis de Ingresos</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+        
+        
+    </div>
+    <div class="col" id="spreadsheetContainer">
+        <iframe sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" src="" width="100%" height="1024"></iframe>
+
+        <a id="directLink" href="" target="_blank">Abrir en nueva pestaña</a>
+
+    </div>
+</div>
+
+<script>
+    var buttons = document.getElementsByClassName('loadButton');
+    var iframe = document.querySelector('#spreadsheetContainer iframe');
+
+    var directLink = document.getElementById('directLink');
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function(){
+            var url = this.getAttribute('data-url');
+            iframe.src = url;
+            directLink.href = url;
+        });
+    }
+</script>
+{% endblock 'content' %}

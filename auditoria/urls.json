@@ -21,5 +21,23 @@
     "calidad":{
         "cuestionario_trabajo_auditoria_url":"https://docs.google.com/document/d/1GCJekYwwdEALsGuQJTVjec8uujED1wdn6mSQhay_UUI/edit?usp=sharing",
         "informe_evaluacion_auditoria_url":"https://docs.google.com/document/d/1RU3230BqdrJBpPSrrME5hr1PSPVIvkiqSW6r6jtyBXM/edit?usp=sharing"
+    },
+    "analisis":{
+        "datos_duplicados_url":"https://docs.google.com/spreadsheets/d/1VboOM7AtviG_hXBPeu8RZfdVtwEd73CI5exaxsTJqxk/edit?usp=sharing",
+        "datos_faltantes_url":"https://docs.google.com/spreadsheets/d/16W4vPOGRBwKpJ83IzcRZB2jhU2FpcS8nB4fbTYxzRkA/edit?usp=sharing",
+        "analisis_sobrevaloracion_url":"https://docs.google.com/spreadsheets/d/1Ul10YT9Yt62YGJwME-ZkImR5g-6pBWXwXzm-L03zKYc/edit?usp=sharing",
+        "analisis_hechos_posteriores_url":"https://docs.google.com/spreadsheets/d/1KZ7D10sfOEmS_M4cJZvVlMm6SafCg_rqHWyzIjrzTSo/edit?usp=sharing",
+        "comparacion_salarios_url":"https://docs.google.com/spreadsheets/d/1KdPT_4xCkVKnJ6PjBQCHgDj_BBmHifuykNn3ZrrGpqQ/edit?usp=sharing",
+        "comparacion_salarios_depositos_url":"https://docs.google.com/spreadsheets/d/1OUJOpEzlB8ZLxB2_ch1WndqhU1PRaCna-0oe8FbxkXw/edit?usp=sharing",
+        "comparativa_retenciones_pagos_url":"https://docs.google.com/spreadsheets/d/11F6WWh62sTCENZNvV1Y3I2amMrXJsuXJLkmHunpPGN0/edit?usp=sharing",
+        "pagos_inusuales_url":"https://docs.google.com/spreadsheets/d/1FBJ569Xasqu5BJRdZUUdwXg43-or6S8VUdl089o5ejg/edit?usp=sharing",
+        "comparativa_impuestos_pagos_url":"https://docs.google.com/spreadsheets/d/1H-60HiuklZF8dSvq94hxb8STcUQP-3rXydLIj7u-Jfo/edit?usp=sharing",
+        "analisis_ingresos_url":"https://docs.google.com/spreadsheets/d/1yKx-QHTDViOdbn5JIwgItrF1_hhxs_UtZv3mJX-3LVk/edit?usp=sharing"
+    },
+    "muestreo":{
+        "muestreo_MUM_url":"https://docs.google.com/spreadsheets/d/1DaaELr405WoVDAsYdanWkSmdOnUL8eO-HMwNO_n03CM/edit?usp=sharing",
+        "Carpeta_MUM_url":"https://drive.google.com/drive/folders/1s5h8LD1qyOyvH7dQj3Eg2D3ziLRNwieN?usp=sharing",
+        "muestreo_MAS_url":"https://docs.google.com/spreadsheets/d/1mhPTY2rzYDnV-h82pCCdyEbaeL6r2h7vRJ9GfFqdoAE/edit?usp=sharing",
+        "muestreo_MAC_url":"https://docs.google.com/spreadsheets/d/1BSyCQWLNbGmVvI6-DqgKskm681JsZCimjyJc4fKf6E0/edit?usp=sharing"
     }
 }

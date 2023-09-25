@@ -68,8 +68,8 @@
                             <li><a class="dropdown-item" href="{% url 'cronograma'%}">Actividades</a></li>
                             {% comment %} <li><a class="dropdown-item" href="{% url 'listar_actividades'%}">Listado de Actividades</a></li> {% endcomment %}
                             <li><a class="dropdown-item" href="{%url 'resumen_tiempo'%}">Resumen de tiempo Auditoría</a></li>
-                            <li><a class="dropdown-item" href="#">Marcas de Auditoría</a></li>
-                            <li><a class="dropdown-item" href="#">Tipos de monedas</a></li>
+                            <li><a class="dropdown-item" href="{% url 'marcas_auditoria' %}">Marcas de Auditoría</a></li>
+                            <li><a class="dropdown-item" href="{% url 'tipo_monedas' %}">Tipos de monedas</a></li>
                         </ul>
                     </li>
 
@@ -80,8 +80,9 @@
                             aria-expanded="false">Importar Archivos</a>
                         <ul class="dropdown-menu">
                             
-                            <li><a class="dropdown-item" href="{% url 'carga_archivo' %}">Balance General</a></li>
-                            <li><a class="dropdown-item" href="{% url 'analisis_vertical' %}">Estado de Resultados</a></li>
+                            <li><a class="dropdown-item" href="{% url 'carga_archivo' %}">Análisis Horizontal</a></li>
+                            <li><a class="dropdown-item" href="{% url 'analisis_vertical' %}">Análisis Vertica</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ratio_financiero' %}">Análisis Ratios Financieros</a></li>
                         </ul>
                     </li>
 
@@ -112,9 +113,9 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'directrices' %}">Directrices</a></li>
                             <li><a class="dropdown-item" href="{% url 'planeacion' %}">Planeación</a></li>
-                            <li><a class="dropdown-item" href="#">Muestreo</a></li>
+                            <li><a class="dropdown-item" href="{% url 'muestreo' %}">Muestreo</a></li>
                             <li><a class="dropdown-item" href="{% url 'ejecucion' %}">Ejecución</a></li>
-                            <li><a class="dropdown-item" href="#">Análisis</a></li>
+                            <li><a class="dropdown-item" href="{% url 'analisis' %}">Análisis</a></li>
                             <li><a class="dropdown-item" href="{% url 'informes' %}">Informe</a></li>
                             <li><a class="dropdown-item" href="{% url 'seguimiento' %}">Seguimiento</a></li>
                             <li><a class="dropdown-item" href="{% url 'calidad' %}">Calidad</a></li>
@@ -127,6 +128,9 @@
                             aria-expanded="false"><b>{{user.username|upper}}</b></a>
                             <ul class="dropdown-menu">
                                 {% comment %} <li><a class="dropdown-item" href="{% url 'change_password' %}">Cambiar Contraseña</a></li> {% endcomment %}
+                                {% if request.user.is_superuser %}
+                                    <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+                                {% endif %}
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
                             </ul>
                     </li>

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'core',
     'auditoria',
     'archivo',
+    'dashboard',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

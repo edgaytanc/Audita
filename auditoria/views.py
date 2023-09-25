@@ -146,7 +146,7 @@ def ejecucion(request):
         'conciliacion_bancaria_dos_url':'https://docs.google.com/document/d/1WpLdRwpINfOb_rpd8WIWrWjwYtLD7iUZkhv6rMunVA4/edit?usp=sharing',
         'confirmacion_bancaria_url':'https://docs.google.com/document/d/1S1wYjaBZtPD_fMq0vO2LVI894ksAAcDC4WnRrSGunKM/edit?usp=sharing',
         'estado_cuenta_url':'https://docs.google.com/document/d/17MPfJRgYFXY_lhSjOrv-OgqdS9JsYP6Lr9J23Jp7Nzw/edit?usp=sharing',
-        'confirmacion_bancaria_url':'https://docs.google.com/spreadsheets/d/18XL9WFc8rDn_yJN1PCb4msy4VVuXkp8oQrncztWD9Dc/edit?usp=sharing',
+        'confirmacion_bancaria_url':'https://docs.google.com/document/d/1S1wYjaBZtPD_fMq0vO2LVI894ksAAcDC4WnRrSGunKM/edit?usp=sharing',
         'integracion_ingresos_url':'https://docs.google.com/spreadsheets/d/1gxla_8N999y3OF2J9fyvqYpCMxmJDWAKspRKhWZJqmI/edit?usp=sharing',
         'integracion_egresos_url':'https://docs.google.com/spreadsheets/d/1GU-bL0Kfu8Pd99_MfrttvaGXBx9ZCV3qtkDXpDBXIZc/edit?usp=sharing',
         'ingresos_caja_banco_url':'https://docs.google.com/spreadsheets/d/14UxQJD7CrZ0nYXh41qD9FdlGlddsnWJPy9Woh00TzAc/edit?usp=sharing',
@@ -284,3 +284,13 @@ def seguimiento(request):
 def calidad(request):
     context = urls["calidad"]
     return render(request,'calidad.html', context)
+
+@login_required
+def analisis(request):
+    context = urls["analisis"]
+    return render(request, 'analisis.html', context)
+
+@login_required
+def muestreo(request):
+    context = urls["muestreo"]
+    return render(request, 'muestreo.html', context)

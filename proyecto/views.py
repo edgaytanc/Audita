@@ -2,7 +2,7 @@ import reportlab
 from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.platypus import Paragraph
-from reportlab.lib.pagesizes import A4,landscape
+from reportlab.lib.pagesizes import A4,landscape, letter
 from reportlab.lib.units import cm
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import *
@@ -13,6 +13,7 @@ from django.http import HttpResponse,FileResponse
 from .forms import ContactoForm, EntidadFrom, AuditorSupervisorForm, NotificacionForm
 from proyecto.models import Contacto, AuditorSupervisor, Entidad
 from datetime import datetime
+from reportlab.lib.styles import getSampleStyleSheet
 
 from django.core.mail import send_mail
 
@@ -58,6 +59,8 @@ def detalle_contacto(request):
 
 #Imprime en pdf la lista de contactos
 @login_required
+
+
 def imprimir_contactos(request):
     contactos = Contacto.objects.all()
     
@@ -65,71 +68,55 @@ def imprimir_contactos(request):
     response['Content-Disposition'] = 'attachment; filename="contactos.pdf"'
 
     buffer = BytesIO()
-    # Crea el objeto PDF y establece el tamaño de la página
-    pdf = canvas.Canvas(response, pagesize=A4)
+    # Crea el objeto PDF en formato horizontal (landscape)
+    pdf = SimpleDocTemplate(buffer, pagesize=landscape(letter))
+
+    elements = []
 
     fecha = datetime.now()
     hoy = fecha.strftime('%d/%m/%y')
 
-    #Header
-    pdf.setLineWidth(.3)
-    pdf.setFont('Helvetica',22)
-    pdf.drawString(30,750,'Audita')
+    # Header
+    elements.append(Paragraph('Audita', getSampleStyleSheet()['Heading1']))
+    elements.append(Paragraph('Reporte', getSampleStyleSheet()['Normal']))
+    elements.append(Paragraph(hoy, getSampleStyleSheet()['Normal']))
+    elements.append(Paragraph("<br/><br/>", getSampleStyleSheet()['Normal']))
 
-    pdf.setFont('Helvetica',12)
-    pdf.drawString(30,735,'Reporte')
-
-    pdf.setFont('Helvetica-Bold',12)
-    pdf.drawString(480,750, hoy)
-    pdf.line(460,747,560,747)
-
-    # table header
-    styles = getSampleStyleSheet()
-    styleBH = styles["Normal"]
-    styleBH.alignment = reportlab.lib.enums.TA_CENTER
-    styleBH.fontSize = 10
-
-    nombre = Paragraph('''Nombre''',styleBH)
-    movil = Paragraph('''Movil''',styleBH)
-    telefono = Paragraph('''Telefono''',styleBH)
-    email = Paragraph('''Email''',styleBH)
-    cargo = Paragraph('''Cargo''',styleBH)
-    empresa = Paragraph('''Empresa''',styleBH)
-
+    # Datos de la tabla
     data = []
+    data.append(["Nombre", "Movil", "Telefono", "Email", "Cargo", "Empresa"])
 
-    data.append([nombre,movil,telefono,email,cargo,empresa])
-
-    #Table body
-    styleN = styles["BodyText"]
-    styleN.alignment = reportlab.lib.enums.TA_CENTER
-    styleN.fontSize = 7
-
-    high = 650
     for contacto in contactos:
         this_contact = [contacto.nombre, contacto.movil, contacto.telefono, contacto.email, contacto.cargo, contacto.empresa]
         data.append(this_contact)
-        high -= 18
 
-    # table size
-    width, height = A4
-    table = Table(data, colWidths=[4.0 * cm, 2.5 * cm, 2.5 * cm, 4.0 * cm, 2.5 * cm, 2.5 * cm, ])
-    table.setStyle(TableStyle([
-        ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
-        ('BOX',(0,0), (-1,-1), 0.25, colors.black)]))
-    
-    #pdf size
-    table.wrapOn(pdf, width,height)
-    table.drawOn(pdf, 30, high)
-    pdf.showPage()
+    # Configuración de estilo de la tabla
+    style = TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    ])
 
-    # Guarda el archivo PDF y cierra el objeto PDF
-    pdf.save()
+    # Crear la tabla y aplicar el estilo
+    tabla = Table(data)
+    tabla.setStyle(style)
+
+    # Agregar la tabla al documento
+    elements.append(tabla)
+
+    # Construir el PDF
+    pdf.build(elements)
+
     pdfs = buffer.getvalue()
     buffer.close()
     response.write(pdfs)
 
     return response
+
 
 # TODAS LAS FUNCIONES RELACIONADAS CON ENTIDAD
 #ingresa datos de la entidad a Auditar

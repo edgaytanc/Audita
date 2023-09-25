@@ -6,7 +6,7 @@
 <div class="row text-center">
     <div class="col">
         <br>
-        <h1>Estado de Resultados - Analisis Vertical</h1>
+        <h1>Estado de Resultados o Balance General</h1>
         <p class="fst-italic">En esta área se debe cargar el Estado de resultados para su analisis Vertical</p>
     </div>
 </div>
@@ -15,17 +15,17 @@
     <div class="col-md-4 offset-md-4">
         <div class="card">
             <div class="card-header">
-                <h2>Estado de resultados</h2>
+                <h2>Estado de resultados o Balance General</h2>
             </div>
             <div class="card-body">
                 <form method="POST" enctype="multipart/form-data" class="mb-4">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="archivo_anterior" class="form-label">Cargar Estado de resultados anterior:</label>
+                        <label for="archivo_anterior" class="form-label">Cargar Estado de resultados o Balance General anterior:</label>
                         <input type="file" class="form-control" name="archivo_anterior" required>
                     </div>
                     <div class="mb-3">
-                        <label for="archivo_actual" class="form-label">Cargar Estado de resultados actual:</label>
+                        <label for="archivo_actual" class="form-label">Cargar Estado de resultados o Balance General actual:</label>
                         <input type="file" class="form-control" name="archivo_actual" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Subir y analizar</button>
