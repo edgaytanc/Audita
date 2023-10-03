@@ -33,4 +33,9 @@
     {% endfor %}
   </tbody>
 </table>
-{% endblock 'content' %}
+<form id="formulario-nombramiento" method="POST" action="{% url 'imprimir_nombramiento' %}">
+  {% csrf_token %}
+  <!-- Tus campos de formulario aquí -->
+  <button type="submit" class="btn btn-primary">Generar Reporte</button>
+</form>
+{% endblock 'content' %} 

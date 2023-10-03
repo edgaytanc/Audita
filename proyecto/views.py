@@ -14,9 +14,7 @@ from .forms import ContactoForm, EntidadFrom, AuditorSupervisorForm, Notificacio
 from proyecto.models import Contacto, AuditorSupervisor, Entidad
 from datetime import datetime
 from reportlab.lib.styles import getSampleStyleSheet
-
 from django.core.mail import send_mail
-
 from django.contrib.auth.decorators import login_required
 from herramientas.decorators import entidad_requerida
 
@@ -59,8 +57,6 @@ def detalle_contacto(request):
 
 #Imprime en pdf la lista de contactos
 @login_required
-
-
 def imprimir_contactos(request):
     contactos = Contacto.objects.all()
     
@@ -117,7 +113,6 @@ def imprimir_contactos(request):
 
     return response
 
-
 # TODAS LAS FUNCIONES RELACIONADAS CON ENTIDAD
 #ingresa datos de la entidad a Auditar
 def entidad(request):
@@ -133,7 +128,6 @@ def entidad(request):
             #se genera un error
             return redirect(reverse('entidad')+'?error')
     return render(request, 'proyecto/entidad.html',{'form':entidad_form})
-
 
 # Muestra la lista de entidades creadas
 def entidad_list(request):
@@ -280,18 +274,12 @@ def entidad_pdf(request, pk):
     p.drawString(30, 490, "Norma Contable: ")
     p.setFont('Helvetica',12)
     p.drawString(175, 490, f"{entidad.norma}")
-
-    
+  
     # Cierra el objeto PDF
     p.showPage()
     p.save()
 
     return response
-
-
-
-
-
 
 @login_required
 @entidad_requerida
@@ -308,7 +296,6 @@ def AuditorSupervisorPro(request):
         else:
             return redirect(reverse('auditorSupervisor')+'?error')
     return render(request, 'proyecto/auditorSupervisor.html',{'form':auditorSupervisor_form})
-
 
 @login_required
 @entidad_requerida
@@ -357,8 +344,6 @@ def eliminarColaborador(request,nombre):
     colaborador = AuditorSupervisor.objects.get(nombre=nombre)
     colaborador.delete()
     return redirect(reverse('cargaColaborador'))
-
-
 
 #imprime en pdf el listado de colaboradores de todas las entidades
 @login_required

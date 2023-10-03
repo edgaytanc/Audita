@@ -15,7 +15,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from io import BytesIO
 from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import letter, landscape
 from django.http import FileResponse
 import tempfile
 import openpyxl
@@ -24,6 +24,12 @@ import os
 from openpyxl.styles import Font, PatternFill, Color, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 import json
+
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from django.http import HttpResponse
+from .models import Nombramiento
 
 # Obten la ruta absolua del directorio donde se encuetra este script
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -34,7 +40,6 @@ urls_file_path =  os.path.join(dir_path, 'urls.json')
 with open(urls_file_path) as f:
     urls = json.load(f)
 
-
 @login_required
 def firma_a_generar(request):
     current_user = request.user
@@ -43,7 +48,6 @@ def firma_a_generar(request):
     if Firma.objects.filter(user=request.user).exists():
         mensaje = 'Ya se genero una Firma Digital'
         
-
     context = {
         'usuario': current_user,
         'fecha': current_date,
@@ -60,8 +64,6 @@ def generar_firma(request):
     #Genera la clave privada y publica del usuario
     private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
     public_key = private_key.public_key()
-
-    
 
     #Generar el mensaje a firmar
    
@@ -87,8 +89,7 @@ def crear_nombramiento(request):
         form = NombramientoForm(request.POST)
         if form.is_valid():
             nombramiento = form.save(commit=False)
-            
-            
+                       
             # Comprueba si el usuario ya tiene un nombramiento
             existing_nombramiento = Nombramiento.objects.filter(user=nombramiento.user).exists()
 
@@ -103,8 +104,6 @@ def crear_nombramiento(request):
 
     context = {'form': form}
     return render(request, 'herramientas/nombramiento.html', context)
-
-
 
 @login_required
 @entidad_requerida
@@ -138,8 +137,6 @@ def eliminar_nombramiento(request, nombramiento_id):
     nombramiento.delete()
     messages.success(request, 'Nombramiento eliminado exitosamente')
     return redirect('/herramientas/listar_nombramientos')
-
-
 
 @login_required
 @entidad_requerida
@@ -193,13 +190,10 @@ def seleccionar_entidad(request):
 
     return render(request, 'herramientas/seleccionar_entidad.html', {'form': form})
 
-
-
 # para la nueva Acividad
 class ActividadListView(ListView):
     model = Actividad
     template_name = 'actividades/actividad_list.html'
-
 
 class ActividadCreateView(CreateView):
     model = Actividad
@@ -215,8 +209,6 @@ class ActividadUpdateView(UpdateView):
     template_name = 'actividades/actividad_form.html'
     success_url = reverse_lazy('actividad_list')
     
-    
-
 class ActividadDeleteView(DeleteView):
     model = Actividad
     template_name = 'actividades/actividad_confirm_delete.html'
@@ -240,14 +232,6 @@ def some_view(request):
     sheet.merge_cells('H6:J6')
     sheet.merge_cells('H7:J7')
     sheet.merge_cells('H8:J8')
-
-    # # Define tamano de la celda
-    # sheet['H5'].width = 45
-    # sheet['H6'].width = 45
-    # sheet['H7'].width = 45
-    # sheet['H8'].width = 45
-
-
 
     # Definir contenido de las celdas combinadas
     sheet['H5'] = 'ENTIDAD XXXXXXXXXXXXXXXXXXX'
@@ -308,7 +292,6 @@ def some_view(request):
     sheet.column_dimensions[get_column_letter(headers.index('Total de días') + 1)].width = 15
     sheet.column_dimensions[get_column_letter(headers.index('Observaciones') + 1)].width = 50
 
-
     # Set the height of the header row
     sheet.row_dimensions[14].height = header_row_height
 
@@ -354,7 +337,6 @@ def some_view(request):
 
     return response
 
-
 # abre el archivo de actividades en google sheet
 @login_required
 # @entidad_requerida
@@ -364,8 +346,6 @@ def cronograma(request):
     }
 
     return render(request, 'cronograma.html', context)
-
-
 
 # abre el archivo de resumen de tiempo, horas y estado de papeles de trabajo
 @login_required
@@ -388,3 +368,60 @@ def marcas(request):
 def monedas(request):
     context = urls["monedas"]
     return render(request, 'monedas.html', context)
+
+@login_required
+@entidad_requerida
+def imprime_nombramientos(request):
+    nombramientos = Nombramiento.objects.all()
+    
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="nombramientos.pdf"'
+
+    buffer = BytesIO()
+    pdf = SimpleDocTemplate(buffer, pagesize=landscape(letter))
+
+    elements = []
+
+    fecha = datetime.now()
+    hoy = fecha.strftime('%d/%m/%y')
+
+    # Header
+    elements.append(Paragraph('Audita', getSampleStyleSheet()['Heading1']))
+    elements.append(Paragraph('Reporte de Nombramientos', getSampleStyleSheet()['Normal']))
+    elements.append(Paragraph(hoy, getSampleStyleSheet()['Normal']))
+    elements.append(Paragraph("<br/><br/>", getSampleStyleSheet()['Normal']))
+
+    # Datos de la tabla
+    data = []
+    data.append(["Usuario", "Nombramiento", "Nombre Completo", "Cargo", "Días Programados"])
+
+    for nombramiento in nombramientos:
+        this_nombramiento = [str(nombramiento.user), nombramiento.nombramiento, nombramiento.nombre_completo, nombramiento.cargo, str(nombramiento.dias_programados)]
+        data.append(this_nombramiento)
+
+    # Configuración de estilo de la tabla
+    style = TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    ])
+
+    # Crear la tabla y aplicar el estilo
+    tabla = Table(data)
+    tabla.setStyle(style)
+
+    # Agregar la tabla al documento
+    elements.append(tabla)
+
+    # Construir el PDF
+    pdf.build(elements)
+
+    pdfs = buffer.getvalue()
+    buffer.close()
+    response.write(pdfs)
+
+    return response
