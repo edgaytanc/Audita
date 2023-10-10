@@ -10,7 +10,9 @@ urlpatterns = [
     path('subir-resultado/', views.subir_archivo_resultado,name='subir_resultado'),
     path('subir-ejecucion',views.subir_archivo_ejecucion,name='subir_ejecucion'),
     path('subir-otro',views.subir_archivo_otro,name='subir_otro'),
+    path('eliminar_archivo/<str:nombre_archivo>/', views.eliminar_archivo, name='eliminar_archivo'),
     path('guias/',views.despliega_archivos,name='guias'),
+    path('chatpdf_planificacion/', views.chatpdf_planificacion, name="chatpdf_planificacion"),
     
 ]
 

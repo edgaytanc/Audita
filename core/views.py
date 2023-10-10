@@ -26,6 +26,9 @@ def salir(request):
     logout(request)
     return redirect('/')
 
+def derechos(request):
+    return render(request, 'varios/derechos.html',{})
+
 @login_required
 def change_password(request):
     if request.method == 'POST':

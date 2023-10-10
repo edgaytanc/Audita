@@ -81,7 +81,7 @@
                         <ul class="dropdown-menu">
                             
                             <li><a class="dropdown-item" href="{% url 'carga_archivo' %}">Análisis Horizontal</a></li>
-                            <li><a class="dropdown-item" href="{% url 'analisis_vertical' %}">Análisis Vertica</a></li>
+                            <li><a class="dropdown-item" href="{% url 'analisis_vertical' %}">Análisis Vertical</a></li>
                             <li><a class="dropdown-item" href="{% url 'ratio_financiero' %}">Análisis Ratios Financieros</a></li>
                         </ul>
                     </li>
@@ -121,6 +121,9 @@
                             <li><a class="dropdown-item" href="{% url 'calidad' %}">Calidad</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'derechos' %}">Derechos</a>
+                    </li>
                     
                     <li class ="nav-item dropdown">
                         <a class ="nav-link dropdown-toggle" href="#"
@@ -134,6 +137,7 @@
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
                             </ul>
                     </li>
+                    
                 </ul>
             </div>
         </div>

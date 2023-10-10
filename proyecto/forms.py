@@ -1,5 +1,8 @@
 from django import forms
 from .models import Contacto, Entidad, AuditorSupervisor, Notificacion
+from django.contrib.auth import get_user_model
+
+CustomUser = get_user_model()
 
 class ContactoForm(forms.ModelForm):
 
@@ -36,3 +39,13 @@ class NotificacionForm(forms.ModelForm):
         fields = '__all__'
 
     fecha_notificacion = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(NotificacionForm, self).__init__(*args, **kwargs)
+
+        if user:
+            if user.role == CustomUser.AUDITOR:
+                self.fields['nombre_notificado'].queryset = CustomUser.objects.filter(role=CustomUser.SUPERVISOR)
+            elif user.role == CustomUser.SUPERVISOR:
+                self.fields['nombre_notificado'].queryset = CustomUser.objects.filter(role=CustomUser.JEFE_AUDITORIA)

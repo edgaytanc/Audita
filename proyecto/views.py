@@ -1,22 +1,22 @@
-import reportlab
-from io import BytesIO
-from reportlab.pdfgen import canvas
-from reportlab.platypus import Paragraph
-from reportlab.lib.pagesizes import A4,landscape, letter
-from reportlab.lib.units import cm
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.platypus import *
-from reportlab.lib import colors
+from .forms import ContactoForm, EntidadFrom, AuditorSupervisorForm, NotificacionForm
+from datetime import datetime
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.http import HttpResponse,FileResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
-from django.http import HttpResponse,FileResponse
-from .forms import ContactoForm, EntidadFrom, AuditorSupervisorForm, NotificacionForm
-from proyecto.models import Contacto, AuditorSupervisor, Entidad
-from datetime import datetime
-from reportlab.lib.styles import getSampleStyleSheet
-from django.core.mail import send_mail
-from django.contrib.auth.decorators import login_required
 from herramientas.decorators import entidad_requerida
+from io import BytesIO
+from proyecto.models import Contacto, AuditorSupervisor, Entidad
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4,landscape, letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import cm
+from reportlab.pdfgen import canvas
+from reportlab.platypus import *
+from reportlab.platypus import Paragraph
+import reportlab
+
 
 #Ingresa nuevos contactos
 @login_required
@@ -436,10 +436,10 @@ def imprimirColaborador(request):
 @login_required
 @entidad_requerida
 def Notificacion(request):
-    notificacion_form = NotificacionForm()
+    notificacion_form = NotificacionForm(user=request.user)
 
     if request.method == 'POST':
-        notificacion_form = NotificacionForm(data=request.POST)
+        notificacion_form = NotificacionForm(data=request.POST, user=request.user)
         if notificacion_form.is_valid():
             # Se obtiene la direccion de correo y el nombre del usuario notificado
             email_destino = notificacion_form.instance.nombre_notificado.email

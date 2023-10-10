@@ -4,6 +4,18 @@ from django.db import models
 class CustomUser(AbstractUser):
     is_activated = models.BooleanField(default=False)
 
+    # Roles
+    AUDITOR = 'auditor'
+    SUPERVISOR = 'supervisor'
+    JEFE_AUDITORIA = 'jefe_auditoria'
+    ROLE_CHOICES = [
+        (AUDITOR, 'Auditor'),
+        (SUPERVISOR, 'Supervisor'),
+        (JEFE_AUDITORIA, 'Jefe de Auditoria'),
+    ]
+    
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default=AUDITOR)
+
     # Add related_name arguments to the definitions of groups and user_permissions
     groups = models.ManyToManyField(
         'auth.Group',

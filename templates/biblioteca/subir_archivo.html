@@ -30,7 +30,14 @@
       </div>
       <div class="card-footer">
         {% if planificacion %}
-        <div class="p-3 mb-3 text-bg-danger rounded-3">{{planificacion}}</div>
+        <div class="p-3 mb-3 text-bg-danger rounded-3">
+          {{planificacion}}
+          <!-- Botón de eliminación -->
+          <form action="{% url 'eliminar_archivo' 'planificación.pdf' %}" method="post" class="mt-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning btn-sm">Eliminar archivo</button>
+          </form>
+        </div>
         {% endif %}
       </div>
     </div>
@@ -54,7 +61,14 @@
       </div>
       <div class="card-footer">
         {% if evaluacion %}
-        <div class="p-3 mb-3 text-bg-danger rounded-3">{{evaluacion}}</div>
+        <div class="p-3 mb-3 text-bg-danger rounded-3">
+          {{evaluacion}}
+          <!-- Botón de eliminación -->
+          <form action="{% url 'eliminar_archivo' 'evaluación.pdf' %}" method="post" class="mt-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning btn-sm">Eliminar archivo</button>
+          </form>
+        </div>
         {% endif %}
       </div>
     </div>
@@ -66,7 +80,7 @@
   <div class="col p-5">
     <div class="card">
       <div class="card-header">
-        <h2>Guía de Ejecucion</h2>
+        <h2>Guía de Ejecución</h2>
       </div>
       <div class="card-body">
         <form action = "{% url 'subir_ejecucion' %}" method="post" enctype="multipart/form-data">
@@ -81,7 +95,14 @@
       </div>
       <div class="card-footer">
         {% if ejecucion %}
-        <div class="p-3 mb-3 text-bg-danger rounded-3">{{ejecucion}}</div>
+        <div class="p-3 mb-3 text-bg-danger rounded-3">
+          {{ejecucion}}
+          <!-- Botón de eliminación -->
+          <form action="{% url 'eliminar_archivo' 'ejecución.pdf' %}" method="post" class="mt-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning btn-sm">Eliminar archivo</button>
+          </form>
+        </div>
         {% endif %}
       </div>
     </div>
@@ -105,7 +126,14 @@
       </div>
       <div class="card-footer">
         {% if resultado %}
-        <div class="p-3 mb-3 text-bg-danger rounded-3">{{resultado}}</div>
+        <div class="p-3 mb-3 text-bg-danger rounded-3">
+          {{resultado}}
+          <!-- Botón de eliminación -->
+          <form action="{% url 'eliminar_archivo' 'resultado.pdf' %}" method="post" class="mt-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning btn-sm">Eliminar archivo</button>
+          </form>
+        </div>
         {% endif %}
       </div>
     </div>
@@ -133,7 +161,14 @@
       </div>
       <div class="card-footer">
         {% if otro %}
-        <div class="p-3 mb-3 text-bg-danger rounded-3">{{otro}}</div>
+        <div class="p-3 mb-3 text-bg-danger rounded-3">
+          {{otro}}
+          <!-- Botón de eliminación -->
+          <form action="{% url 'eliminar_archivo' 'otros.pdf' %}" method="post" class="mt-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning btn-sm">Eliminar archivo</button>
+          </form>
+        </div>
         {% endif %}
       </div>
     </div>

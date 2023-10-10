@@ -17,6 +17,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     # path('', include('django.contrib.auth.urls')),
     path('index/', views.index,name='index'),
+    path('derechos/',views.derechos,name='derechos'),
     path('cambiar-contrasena/', views.change_password, name='change_password'),
     path('restablecer-contrasena/', views.reset_password, name='reset_password'),
     # path('register/', views.register, name='register'),

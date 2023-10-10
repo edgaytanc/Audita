@@ -5,9 +5,10 @@ from django.http import HttpResponse
 from django.views.generic import View
 from .models import Archivo
 import os
-
+import requests
 from django.contrib.auth.decorators import login_required
 from herramientas.decorators import entidad_requerida
+
 
 @login_required
 @entidad_requerida
@@ -149,3 +150,50 @@ def subir_archivo_otro(request):
 def despliega_archivos(request):
     archivos = Archivo.objects.all()
     return render(request, 'biblioteca/guias.html',{'archivos':archivos})
+
+
+@login_required
+@entidad_requerida
+def eliminar_archivo(request, nombre_archivo):
+    try:
+        # Obtener el objeto Archivo basado en el nombre del archivo
+        archivo_obj = Archivo.objects.get(nombre=nombre_archivo)
+
+        # Eliminar el archivo del sistema de archivos
+        if archivo_obj.archivo_pdf:
+            if os.path.isfile(archivo_obj.archivo_pdf.path):
+                os.remove(archivo_obj.archivo_pdf.path)
+
+        # Eliminar el objeto del modelo de la base de datos
+        archivo_obj.delete()
+
+        # Redirigir al usuario a la página de subida de archivos
+        return redirect('subir_archivo')
+
+    except Archivo.DoesNotExist:
+        # Aquí puedes manejar el error como prefieras. Por ejemplo, podrías mostrar un mensaje al usuario.
+        return render(request, 'biblioteca/subir_archivo.html', {'error_message': 'Archivo no encontrado.'})
+    except Exception as e:
+        # Aquí también puedes manejar el error como prefieras.
+        return render(request, 'biblioteca/subir_archivo.html', {'error_message': f'Error al eliminar archivo: {str(e)}'})
+    
+
+
+
+
+def chatpdf_planificacion(request):
+    headers = {
+        'x-api-key': 'sec_2MF4VxuNlx7Oz0LklHfy0fVXCMhRYbtU',
+        'Content-Type': 'application/json'
+    }
+    data = {'url': 'https://{domain}/media/archivos/pdf/planificación.pdf'}
+
+    response = requests.post(
+        'https://api.chatpdf.com/v1/sources/add-url', headers=headers, json=data)
+
+    if response.status_code == 200:
+        source_id = response.json()['sourceId']
+        return redirect(f'https://www.chatpdf.com/viewer/{source_id}')
+    else:
+        return HttpResponse(f'Error: {response.text}', status=400)
+
