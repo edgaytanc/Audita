@@ -449,21 +449,24 @@ def Notificacion(request):
             mensaje = (
                 f"Estimado {nombre_destino}.\n\n"
                 f"Fecha: {notificacion_form.instance.fecha_notificacion}\n"
-                f"Entidad:{notificacion_form.instance.entidad.nombre}\n\n"
+                f"Entidad: {notificacion_form.instance.entidad.nombre}\n\n"
                 f"{notificacion_form.instance.nota}\n\n"
                 f"Atentamente,\n\n{notificacion_form.instance.nombre_notifica} "
             )
 
-            # enviar correo electrionico
+            # Lista de destinatarios incluyendo al remitente
+            recipients = [email_destino, request.user.email]
+
+            # Enviar correo electrónico
             send_mail('Notificación de Audita',
                       mensaje,
                       'noreply@audita.com',
-                      [email_destino],
+                      recipients,
                       fail_silently=False,
                       )
-            # Guarda notificacion en base de datos
+            # Guarda notificación en base de datos
             notificacion_form.save()
             return redirect(reverse('notificacion')+'?ok')
         else:
             return redirect(reverse('notificacion')+'?error')
-    return render(request, 'proyecto/notificacion.html',{'form':notificacion_form})
+    return render(request, 'proyecto/notificacion.html', {'form': notificacion_form})

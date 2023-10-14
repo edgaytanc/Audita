@@ -45,7 +45,21 @@ class NotificacionForm(forms.ModelForm):
         super(NotificacionForm, self).__init__(*args, **kwargs)
 
         if user:
+            # Si el usuario activo es un Auditor
             if user.role == CustomUser.AUDITOR:
-                self.fields['nombre_notificado'].queryset = CustomUser.objects.filter(role=CustomUser.SUPERVISOR)
+                self.fields['nombre_notificado'].queryset = CustomUser.objects.filter(
+                    role__in=[CustomUser.SUPERVISOR, CustomUser.JEFE_AUDITORIA]
+                )
+
+            # Si el usuario activo es un Supervisor
             elif user.role == CustomUser.SUPERVISOR:
-                self.fields['nombre_notificado'].queryset = CustomUser.objects.filter(role=CustomUser.JEFE_AUDITORIA)
+                self.fields['nombre_notificado'].queryset = CustomUser.objects.filter(
+                    role__in=[CustomUser.AUDITOR, CustomUser.JEFE_AUDITORIA]
+                )
+
+            # Si el usuario activo es un Jefe de Auditoria
+            elif user.role == CustomUser.JEFE_AUDITORIA:
+                self.fields['nombre_notificado'].queryset = CustomUser.objects.filter(
+                    role__in=[CustomUser.AUDITOR, CustomUser.SUPERVISOR]
+                )
+
