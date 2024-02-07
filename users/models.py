@@ -33,3 +33,6 @@ class CustomUser(AbstractUser):
         related_query_name='user',
         related_name='customuser_set',  # Add this line
     )
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"

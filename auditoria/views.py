@@ -219,7 +219,7 @@ def ejecucion(request):
         'cedula_marca_activo_intangible_url':'https://docs.google.com/document/d/18wKXbOMC0h4xnzvp6f_Ix0qg9QCT7JyQHRNiw2VJJmI/edit?usp=sharing',
         # Auditoria de Cuentas por pagar
         'auditoria_cuentas_pagar_url':'https://docs.google.com/document/d/1ePgq-iOnTnuwtphbrGu_vHfGv0Iet8QKqJjVhehFAj4/edit?usp=sharing',
-        'sumaria_caja_bancos_url':'https://docs.google.com/spreadsheets/d/1jKiRY0gn0xa1ZMape0SGgrHI3W4Vs7cE78xROnZgRRM/edit?usp=sharing',
+        'sumaria_cuentas_pagar_url':'https://docs.google.com/spreadsheets/d/1jKiRY0gn0xa1ZMape0SGgrHI3W4Vs7cE78xROnZgRRM/edit?usp=sharing',
         'integracion_proveedores_url':'https://docs.google.com/document/d/1-6v7Wt5sZY6-e9V3MiDZkezagtyB3FskX2CgGwedL_s/edit?usp=sharing',
         'cedula_muestra_cuentas_pagar_url':'https://docs.google.com/spreadsheets/d/1eL02A0VCd-GH2uYcxZ-VMeXP2u9eUkLa48BOkInwU_I/edit?usp=sharing',
         'calculo_prestaciones_laborales_url':'https://docs.google.com/document/d/13HCOu_8sw4unFbaYQveF-Gpg4z2M3EWDwlriUEs9jTI/edit?usp=sharing',

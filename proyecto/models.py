@@ -113,3 +113,4 @@ class Notificacion(models.Model):
         verbose_name = 'Notificacion'
         verbose_name_plural = 'Notificaciones'
         ordering = ['id']
+        

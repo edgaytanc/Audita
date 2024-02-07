@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "audita-403902",
+    "private_key_id": "6395a88e10d2315f07f773cf9ddcd079b24540c7",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC+54o+j2pUqzyj\nDNsUe6mLJZuwv2zhxKwmr2uoqj7vQx2+fzQsLjRoGpgCKBfGfznmy5GdO0u9wSaC\nzkMXhbdzN7dAOgtpl2a0VepgYC68tNrihu8ZD42HJBCKqeeG2hXo0/rmHWnttnQO\nyoONTlOHFvvXbuyPiOpvEBvFabnzYPLmL6yPERymhHSVM3nRydXoVTTTfbfoWnXk\nNi+dItvtmjyuZAd1SUJriKXl8+qN2epDg4AOIU58G8Dgj86CR9D+EfNjRYc3Wld/\nm3qT6adEAfNwuyN7/bSCrEobSqGNvR3VHK59IzUIom0GB4A2uPQmC/eZ30YpcmB0\nmgkDXZh1AgMBAAECggEAAbC2SjhcKe02+zDomkpTZY0yWQyg2ZhHPIxL63ZGH2Dm\nVEBZsaOGoX5qel5pDBicq0kzI4Otd5SHk1bXf3bvW8WIjn2tsVf+t+sLSUADOezl\nF2Zy/W537+gJkjn3H2htdcXJLeHg3bo4kOviMGERRs0e31aPg5Gt49w8/6IMvslS\nxmf17AulLaMxkk4El/mBtCADw79rzP8bEvyDSN0nCNj51+rbJtNmuymhM+7o8Sdf\nGjeycj7uWjIxQB1zDXeYpgUTsX9oL48YS3AhgQUrDeIHs9l1MPqoiPm2HYxo0AoT\nndHYXEzONOIx2r3QbW6B9CvkTQkYLs1cGuKqEeiCEQKBgQDp2XupwgwEpV+YN3VC\n/eFweV9KFbCf0WzBUvM+rRrDIwUR/Dl61ZboYxfyc/Oal2sFkPSts0z+ZCWke4XZ\nDEceuXRMttyJ9ZO+/50FziLXdkxbVEIgB9Qb778hBxbxvlpuwfDflYJpCPF0QR7e\nMGoVdk10/IDv1DZLrbCZ7vNzDQKBgQDQ/LMv/A9lhsZKFWbfXBWseOjVCsFL9sOX\nyFYDP/Z+on/A4Mqy+gd9gJpZeAat+PnRczxrYfnnt3olwuMPv2SA491+Tplrqtrn\nROAgIts5w8M/9qFyo/6TQTelGp81PLFhunpgZPeagPtkLCMU9f8NBAI+IQU5uBtb\nPWJV3emBCQKBgFwrm2FKmYAPSoFtgmt4M64oOJWzvN0RJ2N/dV6DziORnwL6vhEb\nNJK91Ad9CkwpWEZmXvpDzJoMEQYmpZfqDfIfOKawAHbj82r5xwMtv2/bMbdhm3qS\ne1jTgyraZ4G6/FvhVzZY8IDDxJ+Et0zuGjIBYgA1MgDVTN1BRXU2yH/VAoGAfGCo\n1DoTf70CbjzmiLBpRch/6asI94jZR5A3gJ+kuCFGHyip+nLL2mmbcvv4Hbo8E+ed\nYdthvAJ6c9bVBB5IVl1HCVEGBgodVd6r9PRJvMtBfOPvmib37/O0hlKdxjVk7GDr\nTEtLAW0aMLgD+QmezcRBAXDthziHL3oM+EWmHuECgYB3G2CYt4tvEmRJqZvx59Ro\nBZYLbl4hKSKyMt9O7hShLPnmGPygOkKaghqZWotw8vSQon1sEYowh1g3z1aEwBVg\nNNsgNI/a5bDO7S5wz6ekW1b6uSYsKlbYAxLSU9OJJY9Itr2nFw+H/lt5NWTEjuVi\njw+y0BZ9FAm18YfG2iie4Q==\n-----END PRIVATE KEY-----\n",
+    "client_email": "audita@audita-403902.iam.gserviceaccount.com",
+    "client_id": "115433120009861690641",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/audita%40audita-403902.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }

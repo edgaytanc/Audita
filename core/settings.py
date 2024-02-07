@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'auditoria',
     'archivo',
     'dashboard',
+    'google_project'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
